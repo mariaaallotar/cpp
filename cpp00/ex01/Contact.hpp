@@ -6,7 +6,7 @@
 /*   By: maheleni <maheleni@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 14:43:17 by maheleni          #+#    #+#             */
-/*   Updated: 2025/01/10 14:12:29 by maheleni         ###   ########.fr       */
+/*   Updated: 2025/01/13 13:42:38 by maheleni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,19 +25,15 @@ class Contact {
 		Contact();
 		int printContact();
 
-		//SETTERS
 		void updateFirstName();
 		void updateLastName();
 		void updateNickname();
 		void updatePhoneNumber();
 		void updateDarkestSecret();
 
-		//GETTERS
 		std::string getFirstName();
 		std::string getLastName();
 		std::string getNickname();
-		std::string getPhoneNumber();
-		std::string getDarkestSecret();
 };
 
 #endif

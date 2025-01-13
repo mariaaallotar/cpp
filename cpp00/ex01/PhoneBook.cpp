@@ -6,7 +6,7 @@
 /*   By: maheleni <maheleni@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 13:15:08 by maheleni          #+#    #+#             */
-/*   Updated: 2025/01/13 11:44:40 by maheleni         ###   ########.fr       */
+/*   Updated: 2025/01/13 13:44:15 by maheleni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,11 +86,11 @@ void PhoneBook::addContact() {
 	newContact.updatePhoneNumber();
 	newContact.updateDarkestSecret();
 	std::cout << std::endl;
-	PhoneBook::contacts[this->writeToLine] = newContact;
-	if (this->writeToLine == PHONEBOOK_SIZE - 1) {
-		this->writeToLine = 0;
+	PhoneBook::contacts[this->writeToIndex] = newContact;
+	if (this->writeToIndex == PHONEBOOK_SIZE - 1) {
+		this->writeToIndex = 0;
 	} else {
-		this->writeToLine++;
+		this->writeToIndex++;
 	}
 }
 

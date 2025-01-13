@@ -6,7 +6,7 @@
 #    By: maheleni <maheleni@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/07 12:03:44 by maheleni          #+#    #+#              #
-#    Updated: 2025/01/10 14:41:51 by maheleni         ###   ########.fr        #
+#    Updated: 2025/01/13 13:34:43 by maheleni         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ clean:
 	rm -rf $(OBJS)
 
 fclean: clean
-	rm $(NAME)
+	rm -rf $(NAME)
 
 re: fclean all
 

@@ -6,7 +6,7 @@
 /*   By: maheleni <maheleni@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 13:26:49 by maheleni          #+#    #+#             */
-/*   Updated: 2025/01/13 11:50:57 by maheleni         ###   ########.fr       */
+/*   Updated: 2025/01/13 13:43:04 by maheleni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,19 +57,16 @@ void Contact::updateDarkestSecret() {
 	this->darkestSecret = Input::getInputLine("Enter your darkest secret: ");
 }
 
-//GETTERS
+
+
 std::string Contact::getFirstName() {
 	return firstName;
 }
+
 std::string Contact::getLastName() {
 	return lastName;
 }
+
 std::string Contact::getNickname() {
 	return nickname;
-}
-std::string Contact::getPhoneNumber() {
-	return phoneNumber;
-}
-std::string Contact::getDarkestSecret() {
-	return darkestSecret;
 }
