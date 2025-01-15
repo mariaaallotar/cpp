@@ -6,7 +6,7 @@
 /*   By: maheleni <maheleni@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 13:15:08 by maheleni          #+#    #+#             */
-/*   Updated: 2025/01/13 13:44:15 by maheleni         ###   ########.fr       */
+/*   Updated: 2025/01/15 10:39:53 by maheleni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,10 @@
 #include "PhoneBook.hpp"
 #include "Input.hpp"
 
-PhoneBook::PhoneBook() {};
+PhoneBook::PhoneBook() {}
 
 void printField(std::string str) {
-	// std::cout << std::setw(10);
 	if (str.length() > 10) {
-		// std::cout << "before:"<< str << std::endl;
 		std::string catStr(str, 0, 9);
 		std::cout << catStr << ".";
 	} else {

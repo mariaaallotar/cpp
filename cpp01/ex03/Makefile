@@ -5,15 +5,15 @@
 #                                                     +:+ +:+         +:+      #
 #    By: maheleni <maheleni@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2025/01/07 12:03:44 by maheleni          #+#    #+#              #
-#    Updated: 2025/01/13 13:34:43 by maheleni         ###   ########.fr        #
+#    Created: 2025/01/13 14:58:54 by maheleni          #+#    #+#              #
+#    Updated: 2025/01/15 13:43:34 by maheleni         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = PhoneBook
+NAME = violence
 CC = c++
 FLAGS =  -Wall -Wextra -Werror -std=c++11
-SRCS = PhoneBook.cpp Contact.cpp Input.cpp main.cpp
+SRCS = main.cpp Weapon.cpp HumanA.cpp HumanB.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 all: $(NAME)
@@ -28,7 +28,7 @@ clean:
 	rm -rf $(OBJS)
 
 fclean: clean
-	rm -rf $(NAME)
+	rm $(NAME)
 
 re: fclean all
 
