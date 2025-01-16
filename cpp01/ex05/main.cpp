@@ -1,20 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   HumanA.cpp                                         :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maheleni <maheleni@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/15 14:52:44 by maheleni          #+#    #+#             */
-/*   Updated: 2025/01/16 15:01:45 by maheleni         ###   ########.fr       */
+/*   Created: 2025/01/16 13:13:42 by maheleni          #+#    #+#             */
+/*   Updated: 2025/01/16 13:45:46 by maheleni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "HumanA.hpp"
+#include "Harl.hpp"
 
-HumanA::HumanA(std::string name, Weapon& weapon) : _name(name), _weapon(weapon) {}
-
-void HumanA::attack() {
-    
-    std::cout << this->_name << " attacks with their " << this->_weapon.getType() << std::endl;
+int main() {
+    Harl harl;
+    harl.complain("DEBUG");
+    harl.complain("INFO");
+    harl.complain("WARNING");
+    harl.complain("ERROR");
 }
