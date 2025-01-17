@@ -6,13 +6,13 @@
 /*   By: maheleni <maheleni@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 15:06:04 by maheleni          #+#    #+#             */
-/*   Updated: 2025/01/15 15:36:31 by maheleni         ###   ########.fr       */
+/*   Updated: 2025/01/17 16:54:04 by maheleni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "HumanB.hpp"
 
-HumanB::HumanB(std::string name, Weapon* weapon) : _name(name), _weapon(weapon) {}
+HumanB::HumanB(std::string name) : _name(name) {}
 
 void HumanB::setWeapon(Weapon& weapon) {
     _weapon = &weapon;

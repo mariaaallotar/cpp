@@ -6,7 +6,7 @@
 /*   By: maheleni <maheleni@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 13:43:43 by maheleni          #+#    #+#             */
-/*   Updated: 2025/01/15 15:28:25 by maheleni         ###   ########.fr       */
+/*   Updated: 2025/01/17 16:54:19 by maheleni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,21 +15,27 @@
 #include "HumanB.hpp"
 
 int main() {
+    
+    //Normal HumanA test case
     {
         Weapon club = Weapon("crude spiked club");
-        HumanA bob("Bob", club);
-        bob.attack();
+        HumanA person1("Alice", club);
+        person1.attack();
         club.setType("some other type of club");
-        bob.attack();
+        person1.attack();
+        std::cout << "--------------------------------" << std::endl;
     }
 
+    //Init HumanB without weapon, attack, then give it a weapon, attack
     {
+        HumanB person2("Bob");
+        person2.attack();
         Weapon club = Weapon("crude spiked club");
-        HumanB jim("Jim");
-        jim.setWeapon(club);
-        jim.attack();
+        person2.setWeapon(club);
         club.setType("some other type of club");
-        jim.attack();
+        person2.attack();
+        std::cout << "--------------------------------" << std::endl;
     }
+    
     return 0;
 }

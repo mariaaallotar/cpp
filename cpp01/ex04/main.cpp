@@ -6,7 +6,7 @@
 /*   By: maheleni <maheleni@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 10:00:22 by maheleni          #+#    #+#             */
-/*   Updated: 2025/01/16 15:01:19 by maheleni         ###   ########.fr       */
+/*   Updated: 2025/01/17 14:02:51 by maheleni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,16 @@
 #include <fstream>
 #include <sstream>
 
-void validateArgs(int argc) {
+void validateArgs(int argc, char *argv[]) {
 
     if (argc != 4) {
         std::cerr << "This program takes exactly 3 arguments, a filename and "
                   "two strings" << std::endl;
+        exit(1);
+    }
+    std::string s1 = argv[2];
+    if (s1.empty()) {
+        std::cerr << "The first string can not be an empty string" << std::endl;
         exit(1);
     }
 }
@@ -76,7 +81,7 @@ void writeToFile(std::ofstream& outfile, const std::string& content) {
 
 int main(int argc, char* argv[]) {
 
-    validateArgs(argc);
+    validateArgs(argc, argv);
 
     std::string filename(argv[1]);
     std::string s1(argv[2]);
