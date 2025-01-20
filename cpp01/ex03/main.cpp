@@ -6,7 +6,7 @@
 /*   By: maheleni <maheleni@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 13:43:43 by maheleni          #+#    #+#             */
-/*   Updated: 2025/01/17 16:54:19 by maheleni         ###   ########.fr       */
+/*   Updated: 2025/01/20 11:59:27 by maheleni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ int main() {
         person2.attack();
         Weapon club = Weapon("crude spiked club");
         person2.setWeapon(club);
+        person2.attack();
         club.setType("some other type of club");
         person2.attack();
         std::cout << "--------------------------------" << std::endl;
