@@ -5,12 +5,12 @@
 #                                                     +:+ +:+         +:+      #
 #    By: maheleni <maheleni@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2025/01/07 12:03:44 by maheleni          #+#    #+#              #
-#    Updated: 2025/01/23 11:40:15 by maheleni         ###   ########.fr        #
+#    Created: 2025/01/13 14:58:54 by maheleni          #+#    #+#              #
+#    Updated: 2025/01/29 10:36:49 by maheleni         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = Fixed
+NAME = fixed
 CC = c++
 FLAGS =  -Wall -Wextra -Werror -std=c++11
 SRCS = main.cpp Fixed.cpp
@@ -28,7 +28,7 @@ clean:
 	rm -rf $(OBJS)
 
 fclean: clean
-	rm -rf $(NAME)
+	rm $(NAME)
 
 re: fclean all
 
