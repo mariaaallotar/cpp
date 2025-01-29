@@ -15,14 +15,38 @@
 
 Fixed::Fixed() : _value(0) {
 	std::cout << "Default constructor called" << std::endl;
-	// std::cout << "Value: " << _value << std::endl;		//remove this
-	// std::cout << "Fractionl bits: " << _factorialBits << std::endl;		//remove this
+};
+
+Fixed::Fixed(int const value) : _value(value) {
+	std::cout << "Int constructor called" << std::endl;
+	std::cout << "Value: " << _value << std::endl;		//remove this
+	std::cout << "Fractionl bits: " << _factorialBits << std::endl;		//remove this
+};
+
+int power(int base, int exp)  {
+	if (exp < 0)
+		return (0);
+	else if (exp == 0)
+		return (1);
+	int i = 0;
+	int res = 1;
+	while (i < exp)
+	{
+		res = res * base;
+		i++;
+	}
+	return (res);
+}
+
+Fixed::Fixed(const float value) {
+	std::cout << "Float constructor called" << std::endl;
+	setRawBits(power(2, this->_factorialBits) * value);
 };
 
 Fixed::Fixed(const Fixed &other) : _value(other.getRawBits()) {
 	std::cout << "Copy constructor called" << std::endl;
-	// std::cout << "Value: " << _value << std::endl;		//remove this
-	// std::cout << "Fractionl bits: " << _factorialBits << std::endl;		//remove this
+	std::cout << "Value: " << _value << std::endl;		//remove this
+	std::cout << "Fractionl bits: " << _factorialBits << std::endl;		//remove this
 };
 
 Fixed &Fixed::operator=(const Fixed &other)
@@ -31,9 +55,14 @@ Fixed &Fixed::operator=(const Fixed &other)
 	if (this != &other) {
 		this->_value = other.getRawBits();
 	}
-	// std::cout << "Value: " << _value << std::endl;		//remove this
-	// std::cout << "Fractionl bits: " << _factorialBits << std::endl;		//remove this
+	std::cout << "Value: " << _value << std::endl;		//remove this
+	std::cout << "Fractionl bits: " << _factorialBits << std::endl;		//remove this
 	return (*this);
+}
+
+std::ostream &operator<<(std::ostream &out, const Fixed &fixed) {
+	out << fixed.toFloat();
+	return (out);
 }
 
 Fixed::~Fixed() {
@@ -41,10 +70,17 @@ Fixed::~Fixed() {
 }
 
 int Fixed::getRawBits(void) const {
-	std::cout << "getRawBits member function called" << std::endl;
     return _value;
 }
 
 void Fixed::setRawBits(int const raw) {
     _value = raw;
+}
+
+float Fixed::toFloat(void) const {
+	return (this->getRawBits() / (1 << this->_factorialBits));
+}
+
+int Fixed::toInt(void) const {
+	return (this->getRawBits() / (1 << this->_factorialBits));
 }
