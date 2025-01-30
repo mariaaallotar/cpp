@@ -1,4 +1,3 @@
-
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
@@ -6,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: maheleni <maheleni@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/23 11:44:36 by maheleni          #+#    #+#             */
-/*   Updated: 2025/01/23 11:45:10 by maheleni         ###   ########.fr       */
+/*   Created: 2025/01/30 12:49:59 by maheleni          #+#    #+#             */
+/*   Updated: 2025/01/30 16:07:40 by maheleni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,3 +72,43 @@ std::ostream &operator<<(std::ostream &out, const Fixed &fixed) {
 	out << fixed.toFloat();
 	return (out);
 };
+
+bool Fixed::operator>(const Fixed &number) const {
+	return (this->_value > number._value);
+}
+
+bool Fixed::operator>=(const Fixed &number) const {
+	return (this->_value >= number._value);
+}
+
+bool Fixed::operator<(const Fixed &number) const {
+	return (this->_value < number._value);
+}
+
+bool Fixed::operator <=(const Fixed &number) const {
+	return (this->_value <= number._value);
+}
+
+bool Fixed::operator ==(const Fixed &number) const {
+	return (this->_value == number._value);
+}
+
+bool Fixed::operator !=(const Fixed &number) const {
+	return (this->_value != number._value);
+}
+
+float Fixed::operator+(const Fixed &number) const {
+	return (this ->toFloat() + number.toFloat());
+}
+
+float Fixed::operator-(const Fixed &number) const {
+	return (this ->toFloat() - number.toFloat());
+}
+
+float Fixed::operator*(const Fixed &number) const {
+	return (this ->toFloat() * number.toFloat());
+}
+
+float Fixed::operator/(const Fixed &number) const {
+	return (this ->toFloat() / number.toFloat());
+}
