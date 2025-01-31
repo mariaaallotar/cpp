@@ -6,7 +6,7 @@
 /*   By: maheleni <maheleni@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 12:49:59 by maheleni          #+#    #+#             */
-/*   Updated: 2025/01/31 15:46:11 by maheleni         ###   ########.fr       */
+/*   Updated: 2025/01/31 14:00:55 by maheleni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,11 @@ int Fixed::getRawBits(void) const {
 };
 
 void Fixed::setRawBits(int const raw) {
-    this->_value = raw;
+    this->_value = ((raw * (1 << this->_factorialBits)));
+};
+
+void Fixed::setRawBits(float const raw) {
+	this->_value = ((int)roundf(raw * (1 << this->_factorialBits)));
 };
 
 int Fixed::toRawBits(const int value) {

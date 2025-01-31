@@ -46,11 +46,7 @@ int Fixed::getRawBits(void) const {
 };
 
 void Fixed::setRawBits(int const raw) {
-    this->_value = ((raw * (1 << this->_factorialBits)));
-};
-
-void Fixed::setRawBits(float const raw) {
-	this->_value = ((int)roundf(raw * (1 << this->_factorialBits)));
+    this->_value = raw;
 };
 
 int Fixed::toRawBits(const int value) {

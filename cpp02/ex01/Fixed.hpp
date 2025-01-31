@@ -31,7 +31,6 @@ class Fixed {
 		~Fixed(void);
         int getRawBits(void) const;
         void setRawBits(const int raw);
-		void setRawBits(const float raw);
 		int toRawBits(const int value);
 		int toRawBits(const float value);
 		float toFloat(void) const;
