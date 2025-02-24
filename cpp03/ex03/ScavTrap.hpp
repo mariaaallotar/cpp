@@ -6,7 +6,7 @@
 /*   By: maheleni <maheleni@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 10:01:56 by maheleni          #+#    #+#             */
-/*   Updated: 2025/02/21 14:45:20 by maheleni         ###   ########.fr       */
+/*   Updated: 2025/02/24 13:43:24 by maheleni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ class ScavTrap : virtual public ClapTrap {
         static const int _initAttackDamage = 20;
 
     public:
-        ScavTrap(std::string name = "default", int hit = _initHitPoints,
+        ScavTrap(std::string name = "default Scavy", int hit = _initHitPoints,
             int energy = _initEnergyPoints, int attack = _initAttackDamage);
         ScavTrap(const ScavTrap & other);
         ScavTrap & operator=(const ScavTrap & other);

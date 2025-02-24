@@ -6,7 +6,7 @@
 /*   By: maheleni <maheleni@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 15:33:12 by maheleni          #+#    #+#             */
-/*   Updated: 2025/02/20 16:10:17 by maheleni         ###   ########.fr       */
+/*   Updated: 2025/02/24 13:28:28 by maheleni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,12 @@ class ClapTrap {
         static const int _initEnergyPoints = 10;
         static const int _initAttackDamage = 0;
 
-    protected:
+    //protected:
         std::string _name;
         int _hitPoints;
         int _energyPoints;
         int _attackDamage;
+
     public:
         ClapTrap(std::string name = "default", int hit = _initHitPoints,
             int energy = _initEnergyPoints, int attack = _initAttackDamage);
