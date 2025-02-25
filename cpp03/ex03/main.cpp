@@ -6,7 +6,7 @@
 /*   By: maheleni <maheleni@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 12:22:59 by maheleni          #+#    #+#             */
-/*   Updated: 2025/02/24 14:34:40 by maheleni         ###   ########.fr       */
+/*   Updated: 2025/02/25 10:58:17 by maheleni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int main() {
     std::cout << "\n" << std::endl;
 
     {
-        std::cout << "Test 5: DiamondTrap copy assignment constructor + attack()" << std::endl;
+        std::cout << "Test 5: DiamondTrap copy assignment operator + attack()" << std::endl;
         DiamondTrap diamondTrap("DDD", 6, 77, 888);
         std::cout << "\t" << diamondTrap << std::endl;
         diamondTrap.whoAmI();

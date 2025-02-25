@@ -6,7 +6,7 @@
 /*   By: maheleni <maheleni@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 15:33:12 by maheleni          #+#    #+#             */
-/*   Updated: 2025/02/24 13:43:39 by maheleni         ###   ########.fr       */
+/*   Updated: 2025/02/25 11:06:29 by maheleni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ class ClapTrap {
         virtual void attack(const std::string& target);
         void takeDamage(unsigned int amount);
         void beRepaired(unsigned int amount);
-        std::string getName();
 };
 
 std::ostream & operator<<(std::ostream &out, const ClapTrap & clapTrap);

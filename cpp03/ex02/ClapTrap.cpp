@@ -6,7 +6,7 @@
 /*   By: maheleni <maheleni@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 15:33:10 by maheleni          #+#    #+#             */
-/*   Updated: 2025/02/20 15:28:48 by maheleni         ###   ########.fr       */
+/*   Updated: 2025/02/25 11:05:29 by maheleni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,3 @@ void ClapTrap::beRepaired(unsigned int amount){
         std::to_string(amount) + " points." << std::endl;
     this->_hitPoints += amount;
 };
-
-std::string ClapTrap::getName() {
-    return (this->_name);
-}
