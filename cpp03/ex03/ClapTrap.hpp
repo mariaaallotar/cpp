@@ -6,7 +6,7 @@
 /*   By: maheleni <maheleni@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 15:33:12 by maheleni          #+#    #+#             */
-/*   Updated: 2025/02/25 11:06:29 by maheleni         ###   ########.fr       */
+/*   Updated: 2025/03/26 14:31:14 by maheleni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ class ClapTrap {
         int _attackDamage;
 
     public:
-        ClapTrap(std::string name = "default Clapy", int hit = _initHitPoints,
+        ClapTrap(std::string name = "default Clappy", int hit = _initHitPoints,
             int energy = _initEnergyPoints, int attack = _initAttackDamage);
         ClapTrap(const ClapTrap & other);
         ClapTrap & operator=(const ClapTrap & other);
