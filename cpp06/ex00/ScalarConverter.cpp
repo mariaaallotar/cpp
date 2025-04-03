@@ -6,7 +6,7 @@
 /*   By: maheleni <maheleni@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 13:06:32 by maheleni          #+#    #+#             */
-/*   Updated: 2025/04/02 15:46:11 by maheleni         ###   ########.fr       */
+/*   Updated: 2025/04/03 13:24:22 by maheleni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,10 @@ int ScalarConverter::isPseudoFloat(const std::string &s)
 }
 
 bool intOverflows(const float f) {
+    float intPart;
+    std::modf(f, &intPart);
+    if (intPart > static_cast<float>(INT_MAX) || intPart < static_cast<float>(INT_MIN))
+        return (true);
     if (f > static_cast<float>(INT_MAX) || f < static_cast<float>(INT_MIN))
         return (true);
     return (false);
@@ -131,9 +135,9 @@ void ScalarConverter::convertFloat(const std::string &s)
         float f = std::stof(s);
         ScalarConverter::printChar(static_cast<char>(f));
         if (intOverflows(f))
-            std::cout << "int: " << static_cast<int>(f) << std::endl;
-        else
             std::cout << "int: Impossible" << std::endl;
+        else
+            std::cout << "int: " << static_cast<int>(f) << std::endl;
         std::cout << std::fixed << std::setprecision(1);
         std::cout << "float: " << f << "f" << std::endl;
         std::cout << "double: " << static_cast<double>(f) << std::endl;
