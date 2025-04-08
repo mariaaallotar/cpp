@@ -80,14 +80,24 @@ int ScalarConverter::isPseudoFloat(const std::string &s)
 	return 0;
 }
 
-bool intOverflows(const float f) {
-    float intPart;
-    std::modf(f, &intPart);
-    if (intPart > static_cast<float>(INT_MAX) || intPart < static_cast<float>(INT_MIN))
-        return (true);
-    if (f > static_cast<float>(INT_MAX) || f < static_cast<float>(INT_MIN))
-        return (true);
-    return (false);
+bool intOverflows(const std::string & s) {
+	try {
+		int i = std::stoi(s);
+		return (false);
+	}
+	catch (std::out_of_range & e) {
+		return (true);
+	}
+}
+
+bool floatOverflows(const std::string & s) {
+	try {
+		float f = std::stof(s);
+		return (false);
+	}
+	catch (std::out_of_range & e) {
+		return (true);
+	}
 }
 
 void conversionImpossiblePrint() {
@@ -108,7 +118,7 @@ void ScalarConverter::printChar(const char &c)
 
 void ScalarConverter::convertChar(const std::string &s)
 {
-	std::cout << "char: " << s[0] << std::endl;
+	std::cout << "char: '" << s[0] << "'"<< std::endl;
 	std::cout << "int: " << static_cast<int>(s[0]) << std::endl;
 	std::cout << "float: " << static_cast<float>(s[0]) << ".0f" << std::endl;
 	std::cout << "double: " << static_cast<double>(s[0]) << ".0" << std::endl;
@@ -124,7 +134,7 @@ void ScalarConverter::convertInt(const std::string &s)
         std::cout << "float: " << static_cast<float>(i) << "f" << std::endl;
         std::cout << "double: " << static_cast<double>(i) << std::endl;
     }
-    catch (std::exception & e) {
+    catch (std::out_of_range & e) {
         conversionImpossiblePrint();
     }
 }
@@ -134,7 +144,7 @@ void ScalarConverter::convertFloat(const std::string &s)
     try {
         float f = std::stof(s);
         ScalarConverter::printChar(static_cast<char>(f));
-        if (intOverflows(f))
+        if (intOverflows(s))
             std::cout << "int: Impossible" << std::endl;
         else
             std::cout << "int: " << static_cast<int>(f) << std::endl;
@@ -152,10 +162,15 @@ void ScalarConverter::convertDouble(const std::string &s)
     try {
         double d = std::stod(s);
         ScalarConverter::printChar(static_cast<char>(d));
-        std::cout << "int: ";
-        std::cout << static_cast<int>(d) << std::endl;
+        if (intOverflows(s))
+            std::cout << "int: Impossible" << std::endl;
+        else
+            std::cout << "int: " << static_cast<int>(d) << std::endl;
         std::cout << std::fixed << std::setprecision(1);
-        std::cout << "float: ";
+		if (floatOverflows(s))
+			std::cout << "float: Impossible" << std::endl;
+		else
+        	std::cout << "float: ";
         std::cout << static_cast<float>(d) << "f" << std::endl;
         std::cout << "double: " << d << std::endl;
     }
