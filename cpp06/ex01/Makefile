@@ -6,14 +6,14 @@
 #    By: maheleni <maheleni@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/01 12:52:33 by maheleni          #+#    #+#              #
-#    Updated: 2025/04/09 15:15:18 by maheleni         ###   ########.fr        #
+#    Updated: 2025/04/09 15:26:06 by maheleni         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = convert
+NAME =  serializer
 CC = c++
 FLAGS =  -Wall -Wextra -Werror -std=c++11
-SRCS = main.cpp ScalarConverter.cpp
+SRCS = main.cpp Serializer.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 all: $(NAME)

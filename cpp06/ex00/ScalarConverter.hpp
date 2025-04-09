@@ -6,7 +6,7 @@
 /*   By: maheleni <maheleni@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 12:54:36 by maheleni          #+#    #+#             */
-/*   Updated: 2025/04/02 11:58:04 by maheleni         ###   ########.fr       */
+/*   Updated: 2025/04/09 13:11:08 by maheleni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,12 @@
 #include <cmath>
 
 class ScalarConverter {
+    private:
+        enum overflow {
+            CHAR_OVERF = 1,
+            INT_OVERF,
+            FLOAT_OVERF
+        };
     public:
         ScalarConverter();
         ScalarConverter(const ScalarConverter & other);
@@ -40,6 +46,6 @@ class ScalarConverter {
         static void convertPseudoDouble(const std::string &s);
         static void convertPseudoFloat(const std::string &s);
         
-        static int isOverflow(const double &d);
-        static void printChar(const char &c);
+        static int isOverflow(const std::string & s);
+        static void printChar(const char &c, const int overflow);
 };

@@ -6,7 +6,7 @@
 /*   By: maheleni <maheleni@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 13:06:32 by maheleni          #+#    #+#             */
-/*   Updated: 2025/04/03 13:24:22 by maheleni         ###   ########.fr       */
+/*   Updated: 2025/04/09 14:07:44 by maheleni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ ScalarConverter::~ScalarConverter() {};
 
 int ScalarConverter::isChar(const std::string &s)
 {
-	if (s.length() == 1 && !std::isdigit(static_cast<unsigned char>(s[0])) && std::isprint(s[0]))
+	if (s.length() == 1 && !std::isdigit(static_cast<unsigned char>(s[0])))
 		return 1;
 	return 0;
 }
@@ -80,24 +80,24 @@ int ScalarConverter::isPseudoFloat(const std::string &s)
 	return 0;
 }
 
-bool intOverflows(const std::string & s) {
-	try {
-		int i = std::stoi(s);
-		return (false);
-	}
-	catch (std::out_of_range & e) {
-		return (true);
-	}
-}
-
-bool floatOverflows(const std::string & s) {
+int ScalarConverter::isOverflow(const std::string & s)
+{
 	try {
 		float f = std::stof(s);
-		return (false);
 	}
 	catch (std::out_of_range & e) {
-		return (true);
+		return (FLOAT_OVERF);
 	}
+	try {
+		int i = std::stoi(s);
+	}
+	catch (std::out_of_range & e) {
+		return (INT_OVERF);
+	}
+	int i = std::stoi(s);
+	if (i < 0 || i > 127)
+		return (CHAR_OVERF);
+	return 0;
 }
 
 void conversionImpossiblePrint() {
@@ -107,18 +107,26 @@ void conversionImpossiblePrint() {
     std::cout << "double: " << "Impossible" << std::endl;
 }
 
-void ScalarConverter::printChar(const char &c)
+void ScalarConverter::printChar(const char &c, const int overflow)
 {
 	std::cout << "char: ";
-    if (std::isprint(static_cast<unsigned char>(c)))
-        std::cout << "'" << c << "'" << std::endl;
-    else
-        std::cout << "Not Displayable" << std::endl;
+	if (!overflow) {
+		if (std::isprint(static_cast<unsigned char>(c)))
+			std::cout << "'" << c << "'" << std::endl;
+		else
+			std::cout << "Not Displayable" << std::endl;
+		
+	}
+	else
+		std::cout << "Impossible" << std::endl;
 }
 
 void ScalarConverter::convertChar(const std::string &s)
 {
-	std::cout << "char: '" << s[0] << "'"<< std::endl;
+	if (std::isprint(s[0]))
+		std::cout << "char: '" << s[0] << "'"<< std::endl;
+	else
+		std::cout << "Not Displayable" << std::endl;
 	std::cout << "int: " << static_cast<int>(s[0]) << std::endl;
 	std::cout << "float: " << static_cast<float>(s[0]) << ".0f" << std::endl;
 	std::cout << "double: " << static_cast<double>(s[0]) << ".0" << std::endl;
@@ -128,7 +136,8 @@ void ScalarConverter::convertInt(const std::string &s)
 {
     try {
         int i = std::stoi(s);
-        ScalarConverter::printChar(static_cast<char>(i));
+		int overflow = isOverflow(s);
+        ScalarConverter::printChar(static_cast<char>(i), overflow);
         std::cout << "int: " << i << std::endl;
         std::cout << std::fixed << std::setprecision(1);
         std::cout << "float: " << static_cast<float>(i) << "f" << std::endl;
@@ -143,8 +152,9 @@ void ScalarConverter::convertFloat(const std::string &s)
 {
     try {
         float f = std::stof(s);
-        ScalarConverter::printChar(static_cast<char>(f));
-        if (intOverflows(s))
+		int overflow = isOverflow(s);
+        ScalarConverter::printChar(static_cast<char>(f), overflow);
+        if (overflow == INT_OVERF)
             std::cout << "int: Impossible" << std::endl;
         else
             std::cout << "int: " << static_cast<int>(f) << std::endl;
@@ -161,13 +171,14 @@ void ScalarConverter::convertDouble(const std::string &s)
 {
     try {
         double d = std::stod(s);
-        ScalarConverter::printChar(static_cast<char>(d));
-        if (intOverflows(s))
+		int overflow = isOverflow(s);
+        ScalarConverter::printChar(static_cast<char>(d), overflow);
+        if (overflow == INT_OVERF)
             std::cout << "int: Impossible" << std::endl;
         else
             std::cout << "int: " << static_cast<int>(d) << std::endl;
         std::cout << std::fixed << std::setprecision(1);
-		if (floatOverflows(s))
+		if (overflow == FLOAT_OVERF)
 			std::cout << "float: Impossible" << std::endl;
 		else
         	std::cout << "float: ";
