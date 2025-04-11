@@ -6,7 +6,7 @@
 /*   By: maheleni <maheleni@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 13:06:32 by maheleni          #+#    #+#             */
-/*   Updated: 2025/04/09 14:07:44 by maheleni         ###   ########.fr       */
+/*   Updated: 2025/04/11 12:49:10 by maheleni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,8 +128,9 @@ void ScalarConverter::convertChar(const std::string &s)
 	else
 		std::cout << "Not Displayable" << std::endl;
 	std::cout << "int: " << static_cast<int>(s[0]) << std::endl;
-	std::cout << "float: " << static_cast<float>(s[0]) << ".0f" << std::endl;
-	std::cout << "double: " << static_cast<double>(s[0]) << ".0" << std::endl;
+	std::cout << std::fixed << std::setprecision(1);
+	std::cout << "float: " << static_cast<float>(s[0]) << "f" << std::endl;
+	std::cout << "double: " << static_cast<double>(s[0])  << std::endl;
 }
 
 void ScalarConverter::convertInt(const std::string &s)
@@ -158,7 +159,6 @@ void ScalarConverter::convertFloat(const std::string &s)
             std::cout << "int: Impossible" << std::endl;
         else
             std::cout << "int: " << static_cast<int>(f) << std::endl;
-        std::cout << std::fixed << std::setprecision(1);
         std::cout << "float: " << f << "f" << std::endl;
         std::cout << "double: " << static_cast<double>(f) << std::endl;
     }
@@ -177,12 +177,10 @@ void ScalarConverter::convertDouble(const std::string &s)
             std::cout << "int: Impossible" << std::endl;
         else
             std::cout << "int: " << static_cast<int>(d) << std::endl;
-        std::cout << std::fixed << std::setprecision(1);
 		if (overflow == FLOAT_OVERF)
 			std::cout << "float: Impossible" << std::endl;
 		else
-        	std::cout << "float: ";
-        std::cout << static_cast<float>(d) << "f" << std::endl;
+        	std::cout << "float: " << static_cast<float>(d) << "f" << std::endl;
         std::cout << "double: " << d << std::endl;
     }
     catch (...) {
