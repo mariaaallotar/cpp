@@ -6,7 +6,7 @@
 /*   By: maheleni <maheleni@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/28 10:52:09 by maheleni          #+#    #+#             */
-/*   Updated: 2025/04/01 12:28:14 by maheleni         ###   ########.fr       */
+/*   Updated: 2025/04/14 14:40:48 by maheleni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ int main() {
             AForm * form = i.makeForm("ShrubberyCreationForm", "Villa");
             b.signForm(*form);
             b.executeForm(*form);
+            delete form;
         }
         catch (Intern::InvalidTypeException & e) {
             std::cerr << "Could not create form: " <<e.what() << std::endl;
@@ -47,6 +48,7 @@ int main() {
             AForm * form = i.makeForm("RobotomyRequestForm", "Hive");
             b.signForm(*form);
             b.executeForm(*form);
+            delete form;
         }
         catch (Intern::InvalidTypeException & e) {
             std::cerr << "Could not create form: " <<e.what() << std::endl;
@@ -64,6 +66,7 @@ int main() {
             AForm * form = i.makeForm("PresidentialPardonForm", "Me");
             b.signForm(*form);
             b.executeForm(*form);
+            delete form;
         }
         catch (Intern::InvalidTypeException & e) {
             std::cerr << "Could not create form: " <<e.what() << std::endl;
@@ -81,6 +84,7 @@ int main() {
             AForm * form = i.makeForm("SomeForm", "Home");
             b.signForm(*form);
             b.executeForm(*form);
+            delete form;
         }
         catch (Intern::InvalidTypeException & e) {
             std::cerr << "Could not create form: " <<e.what() << std::endl;

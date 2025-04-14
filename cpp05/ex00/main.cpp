@@ -6,7 +6,7 @@
 /*   By: maheleni <maheleni@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/27 09:54:17 by maheleni          #+#    #+#             */
-/*   Updated: 2025/03/27 10:50:36 by maheleni         ###   ########.fr       */
+/*   Updated: 2025/04/14 14:34:24 by maheleni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,14 @@ int main() {
             std::cout << b << std::endl;
         }
         catch (std::exception & e) {
-            std::cerr << e.what() << std::endl;
+            std::cout << e.what() << std::endl;
         }
         try {
             b.incrementGrade();
             std::cout << b << std::endl;
         }
         catch (std::exception & e) {
-            std::cerr << e.what() << std::endl;
+            std::cout << e.what() << std::endl;
         }
     }
     {
@@ -44,18 +44,18 @@ int main() {
                 std::cout << b << std::endl;
             }
             catch (std::exception & e) {
-                std::cerr << e.what() << std::endl;
+                std::cout << e.what() << std::endl;
             }
             try {
                 b.incrementGrade();
                 std::cout << b << std::endl;
             }
             catch (std::exception & e) {
-                std::cerr << e.what() << std::endl;
+                std::cout << e.what() << std::endl;
             }
         }
         catch (std::exception & e) {
-            std::cerr << e.what() << std::endl;
+            std::cout << e.what() << std::endl;
         }
     }
     {
@@ -69,18 +69,18 @@ int main() {
                 std::cout << b << std::endl;
             }
             catch (std::exception & e) {
-                std::cerr << e.what() << std::endl;
+                std::cout << e.what() << std::endl;
             }
             try {
                 b.incrementGrade();
                 std::cout << b << std::endl;
             }
             catch (std::exception & e) {
-                std::cerr << e.what() << std::endl;
+                std::cout << e.what() << std::endl;
             }
         }
         catch (std::exception & e) {
-            std::cerr << e.what() << std::endl;
+            std::cout << e.what() << std::endl;
         }
     }
     {
@@ -94,18 +94,18 @@ int main() {
                 std::cout << b << std::endl;
             }
             catch (std::exception & e) {
-                std::cerr << e.what() << std::endl;
+                std::cout << e.what() << std::endl;
             }
             try {
                 b.incrementGrade();
                 std::cout << b << std::endl;
             }
             catch (std::exception & e) {
-                std::cerr << e.what() << std::endl;
+                std::cout << e.what() << std::endl;
             }
         }
         catch (std::exception & e) {
-            std::cerr << e.what() << std::endl;
+            std::cout << e.what() << std::endl;
         }
     }
     {
@@ -121,18 +121,18 @@ int main() {
                 std::cout << b2 << std::endl;
             }
             catch (std::exception & e) {
-                std::cerr << e.what() << std::endl;
+                std::cout << e.what() << std::endl;
             }
             try {
                 b2.incrementGrade();
                 std::cout << b2 << std::endl;
             }
             catch (std::exception & e) {
-                std::cerr << e.what() << std::endl;
+                std::cout << e.what() << std::endl;
             }
         }
         catch (std::exception & e) {
-            std::cerr << e.what() << std::endl;
+            std::cout << e.what() << std::endl;
         }
     }
     {
@@ -150,7 +150,7 @@ int main() {
                 std::cout << b2 << std::endl;
             }
             catch (std::exception & e) {
-                std::cerr << e.what() << std::endl;
+                std::cout << e.what() << std::endl;
             }
             try {
                 b2.incrementGrade();
@@ -158,11 +158,11 @@ int main() {
                 std::cout << b2 << std::endl;
             }
             catch (std::exception & e) {
-                std::cerr << e.what() << std::endl;
+                std::cout << e.what() << std::endl;
             }
         }
         catch (std::exception & e) {
-            std::cerr << e.what() << std::endl;
+            std::cout << e.what() << std::endl;
         }
     }
 }

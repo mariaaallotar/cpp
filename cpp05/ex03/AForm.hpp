@@ -6,7 +6,7 @@
 /*   By: maheleni <maheleni@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/28 09:07:45 by maheleni          #+#    #+#             */
-/*   Updated: 2025/04/01 09:42:48 by maheleni         ###   ########.fr       */
+/*   Updated: 2025/04/14 14:38:53 by maheleni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ class AForm {
             unsigned int executeGrade = 1);
         AForm(const AForm & other);
         AForm & operator=(const AForm & other);
-        ~AForm();
+        virtual ~AForm();
         void beSigned(const Bureaucrat &b);
         std::string getName() const;
         bool getIsSigned() const;
