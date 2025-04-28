@@ -6,7 +6,7 @@
 /*   By: maheleni <maheleni@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 11:08:25 by maheleni          #+#    #+#             */
-/*   Updated: 2025/04/10 11:43:35 by maheleni         ###   ########.fr       */
+/*   Updated: 2025/04/17 13:47:03 by maheleni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 int main() {
     
     int testCounter = 1;
+    srand(time(0));
 
     {
         std::cout << "\nTest" << std::to_string(testCounter++) <<
@@ -25,7 +26,6 @@ int main() {
             list[i] = generate();
             identify(list[i]);
             identify(*(list[i]));
-            sleep(1);
         }
         for (Base * b : list) {
             delete b;

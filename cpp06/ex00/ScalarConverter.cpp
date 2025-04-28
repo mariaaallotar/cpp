@@ -6,7 +6,7 @@
 /*   By: maheleni <maheleni@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 13:06:32 by maheleni          #+#    #+#             */
-/*   Updated: 2025/04/11 12:49:10 by maheleni         ###   ########.fr       */
+/*   Updated: 2025/04/28 11:23:53 by maheleni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,19 @@ int ScalarConverter::isOverflow(const std::string & s)
 	return 0;
 }
 
+int countPrecision(const std::string &s, int isFloat) {
+	size_t dot = s.find('.');
+	std::string fromDot = s.substr(dot);
+	int len = fromDot.size();
+	if (isFloat) {
+		len--;
+	}
+	len--;
+	if (len <= 0)
+		return (1);
+	return (len);
+}
+
 void conversionImpossiblePrint() {
     std::cout << "char: " << "Impossible" << std::endl;
     std::cout << "int: " << "Impossible" << std::endl;
@@ -154,6 +167,7 @@ void ScalarConverter::convertFloat(const std::string &s)
     try {
         float f = std::stof(s);
 		int overflow = isOverflow(s);
+		std::cout << std::fixed << std::setprecision(countPrecision(s, 1));
         ScalarConverter::printChar(static_cast<char>(f), overflow);
         if (overflow == INT_OVERF)
             std::cout << "int: Impossible" << std::endl;
@@ -172,6 +186,7 @@ void ScalarConverter::convertDouble(const std::string &s)
     try {
         double d = std::stod(s);
 		int overflow = isOverflow(s);
+		std::cout << std::fixed << std::setprecision(countPrecision(s, 0));
         ScalarConverter::printChar(static_cast<char>(d), overflow);
         if (overflow == INT_OVERF)
             std::cout << "int: Impossible" << std::endl;

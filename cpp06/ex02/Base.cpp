@@ -6,7 +6,7 @@
 /*   By: maheleni <maheleni@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 10:52:49 by maheleni          #+#    #+#             */
-/*   Updated: 2025/04/10 11:40:05 by maheleni         ###   ########.fr       */
+/*   Updated: 2025/04/17 13:47:02 by maheleni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 Base::~Base() {};
 
 Base * generate(void) {
-    srand(time(0));
     int randN = rand();
     if (randN % 3 == 0) {
         std::cout << "Created: A" << std::endl;
