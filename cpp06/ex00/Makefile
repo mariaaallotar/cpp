@@ -6,12 +6,12 @@
 #    By: maheleni <maheleni@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/01 12:52:33 by maheleni          #+#    #+#              #
-#    Updated: 2025/04/10 14:05:53 by maheleni         ###   ########.fr        #
+#    Updated: 2025/04/30 12:00:55 by maheleni         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = convert
-CC = c++ -g
+CC = c++
 FLAGS =  -Wall -Wextra -Werror -std=c++11
 SRCS = main.cpp ScalarConverter.cpp
 OBJS = $(SRCS:.cpp=.o)

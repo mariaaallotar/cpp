@@ -6,7 +6,7 @@
 /*   By: maheleni <maheleni@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 11:33:02 by maheleni          #+#    #+#             */
-/*   Updated: 2025/04/14 12:38:58 by maheleni         ###   ########.fr       */
+/*   Updated: 2025/04/30 12:04:44 by maheleni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ int main() {
         char b = 'b';
         std::cout << "a = " << a << ", b = " << b << std::endl;
         swap( a, b );
+        std::cout << "swap()" << std::endl;
         std::cout << "a = " << a << ", b = " << b << std::endl;
         std::cout << "min( a, b ) = " << ::min( a, b ) << std::endl;
         std::cout << "max( a, b ) = " << ::max( a, b ) << std::endl;
@@ -51,6 +52,7 @@ int main() {
         float b = 100.2f;
         std::cout << "a = " << a << ", b = " << b << std::endl;
         swap( a, b );
+        std::cout << "swap()" << std::endl;
         std::cout << "a = " << a << ", b = " << b << std::endl;
         std::cout << "min( a, b ) = " << ::min( a, b ) << std::endl;
         std::cout << "max( a, b ) = " << ::max( a, b ) << std::endl;
@@ -62,6 +64,7 @@ int main() {
         double b = 100.2;
         std::cout << "a = " << a << ", b = " << b << std::endl;
         swap( a, b );
+        std::cout << "swap()" << std::endl;
         std::cout << "a = " << a << ", b = " << b << std::endl;
         std::cout << "min( a, b ) = " << ::min( a, b ) << std::endl;
         std::cout << "max( a, b ) = " << ::max( a, b ) << std::endl;

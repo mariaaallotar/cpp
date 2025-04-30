@@ -6,7 +6,7 @@
 /*   By: maheleni <maheleni@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 12:33:50 by maheleni          #+#    #+#             */
-/*   Updated: 2025/04/28 15:00:13 by maheleni         ###   ########.fr       */
+/*   Updated: 2025/04/30 12:31:54 by maheleni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,19 +83,21 @@ int main() {
         std::cout << "TEST 5: deep copy with copy constrctor" << std::endl;
         try {
             Array<int> a(5);
-            a[0] = 0;   //adding only 0 and 1 to a
+            std::cout << "Adding 0 and 1 to a" << std::endl;
+            a[0] = 0;
             a[1] = 1;
             std::cout << "a[0]: " << a[0] << std::endl;
             std::cout << "a[1]: " << a[1] << std::endl;
-            Array<int> b(a);    //constructing b by copy
-            a[2] = 2;       //adding 2 into a (will not be in b)
-            b[3] = 3;       //adding 3 to b (will not be in a)
-            std::cout <<  "b[0]: " << b[0] << std::endl;
-            std::cout <<  "b[1]: " << b[1] << std::endl;
-            std::cout <<  "b[2]: " << b[2] << std::endl;
-            std::cout <<  "b[3]: " << b[3] << std::endl;
+            std::cout << "Constructing b by copy of a" << std::endl;
+            Array<int> b(a);
+            std::cout << "Adding 2 to a (will only be in a)" << std::endl;
+            a[2] = 2;
             std::cout <<  "a[2]: " << a[2] << std::endl;
+            std::cout <<  "b[2]: " << b[2] << std::endl;
+            std::cout << "Adding 3 to b (will only be in b)" << std::endl;
+            b[3] = 3;
             std::cout <<  "a[3]: " << a[3] << std::endl;
+            std::cout <<  "b[3]: " << b[3] << std::endl;
         }
         catch (std::exception & e) {
             std::cout << e.what() << std::endl;
