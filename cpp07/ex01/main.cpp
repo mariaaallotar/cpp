@@ -6,7 +6,7 @@
 /*   By: maheleni <maheleni@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 12:42:21 by maheleni          #+#    #+#             */
-/*   Updated: 2025/04/30 13:03:42 by maheleni         ###   ########.fr       */
+/*   Updated: 2025/04/30 15:55:29 by maheleni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,9 @@ void print(T& value) {
     std::cout << value << std::endl;
 }
 
-void printConst(const std::string & str) {
-    std::cout << str << std::endl;
+template <class T>
+void printConst(const T & value) {
+    std::cout << value << std::endl;
 }
 
 void increment(int & value) {

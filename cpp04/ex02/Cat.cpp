@@ -6,17 +6,17 @@
 /*   By: maheleni <maheleni@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/21 12:23:29 by maheleni          #+#    #+#             */
-/*   Updated: 2025/03/25 15:55:07 by maheleni         ###   ########.fr       */
+/*   Updated: 2025/04/30 15:23:50 by maheleni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Cat.hpp"
 
-Cat::Cat(std::string type) : brain(new Brain()), Animal(type) {
+Cat::Cat(std::string type) : Animal(type), brain(new Brain()) {
     std::cout << "Cat constructor called" << std::endl;
 };
 
-Cat::Cat(const Cat & other) : brain(new Brain(*(other.brain))), Animal(other.type) {
+Cat::Cat(const Cat & other) : Animal(other.type), brain(new Brain(*(other.brain))) {
     std::cout << "Cat copy constructor called" << std::endl;
 };
 

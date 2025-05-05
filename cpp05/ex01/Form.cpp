@@ -6,15 +6,15 @@
 /*   By: maheleni <maheleni@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/27 11:18:05 by maheleni          #+#    #+#             */
-/*   Updated: 2025/03/27 15:42:10 by maheleni         ###   ########.fr       */
+/*   Updated: 2025/04/30 15:26:27 by maheleni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Form.hpp"
 
 Form::Form(std::string name, unsigned int signGrade, unsigned int executeGrade) :
-    _name(name), _isSigned(false), _minExecuteGrade(executeGrade),
-    _minSignGrade(signGrade) {
+    _name(name), _isSigned(false), _minSignGrade(signGrade) ,
+    _minExecuteGrade(executeGrade) {
 
     if (signGrade > _minGrade || executeGrade > _minGrade)
         throw Form::GradeTooLowException();
@@ -23,7 +23,7 @@ Form::Form(std::string name, unsigned int signGrade, unsigned int executeGrade) 
 };
 
 Form::Form(const Form & other) : _name(other._name), _isSigned(other._isSigned),
-    _minExecuteGrade(other._minExecuteGrade), _minSignGrade(other._minSignGrade) {};
+    _minSignGrade(other._minSignGrade), _minExecuteGrade(other._minExecuteGrade) {};
 
 Form & Form::operator=(const Form & other) {
     if (this != &other) {

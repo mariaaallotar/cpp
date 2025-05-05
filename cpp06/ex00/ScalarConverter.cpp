@@ -6,7 +6,7 @@
 /*   By: maheleni <maheleni@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 13:06:32 by maheleni          #+#    #+#             */
-/*   Updated: 2025/04/30 11:14:19 by maheleni         ###   ########.fr       */
+/*   Updated: 2025/04/30 15:35:17 by maheleni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static int isInt(const std::string &s)
     int i = 0;
 	if ((s[i] == '-' || s[i] == '+') && s.length() > 1)
 		i++;
-	for (; i < s.length(); i++)
+	for (; (size_t)i < s.length(); i++)
 		if (!std::isdigit(static_cast<unsigned char>(s[i])))
 			return 0;
 	return 1;
@@ -79,13 +79,13 @@ static int isPseudoFloat(const std::string &s)
 static int isOverflow(const std::string & s)
 {
 	try {
-		float f = std::stof(s);
+		std::stof(s);
 	}
 	catch (std::out_of_range & e) {
 		return (FLOAT_OVERF);
 	}
 	try {
-		int i = std::stoi(s);
+		std::stoi(s);
 	}
 	catch (std::out_of_range & e) {
 		return (INT_OVERF);

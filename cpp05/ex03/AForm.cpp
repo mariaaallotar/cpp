@@ -6,15 +6,15 @@
 /*   By: maheleni <maheleni@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/28 09:09:55 by maheleni          #+#    #+#             */
-/*   Updated: 2025/03/28 14:23:49 by maheleni         ###   ########.fr       */
+/*   Updated: 2025/04/30 15:28:44 by maheleni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "AForm.hpp"
 
 AForm::AForm(std::string name, unsigned int signGrade, unsigned int executeGrade) :
-    _name(name), _isSigned(false), _minExecuteGrade(executeGrade),
-    _minSignGrade(signGrade) {
+    _name(name), _isSigned(false), _minSignGrade(signGrade),
+    _minExecuteGrade(executeGrade) {
 
     if (signGrade > _minGrade || executeGrade > _minGrade)
         throw AForm::GradeTooLowException();
@@ -23,7 +23,7 @@ AForm::AForm(std::string name, unsigned int signGrade, unsigned int executeGrade
 };
 
 AForm::AForm(const AForm & other) : _name(other._name), _isSigned(other._isSigned),
-    _minExecuteGrade(other._minExecuteGrade), _minSignGrade(other._minSignGrade) {};
+    _minSignGrade(other._minSignGrade), _minExecuteGrade(other._minExecuteGrade) {};
 
 //this does not really make sense, but rules are rules
 AForm & AForm::operator=(const AForm & other) {

@@ -6,19 +6,13 @@
 /*   By: maheleni <maheleni@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 10:45:09 by maheleni          #+#    #+#             */
-/*   Updated: 2025/04/01 12:19:21 by maheleni         ###   ########.fr       */
+/*   Updated: 2025/04/30 15:32:52 by maheleni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Intern.hpp"
 
 Intern::Intern() {};
-
-Intern::Intern(const Intern & other) {};
-
-Intern & Intern::operator=(const Intern & other) {
-    return *this;
-};
 
 Intern::~Intern() {};
 

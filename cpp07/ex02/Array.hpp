@@ -6,7 +6,7 @@
 /*   By: maheleni <maheleni@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 14:58:44 by maheleni          #+#    #+#             */
-/*   Updated: 2025/04/28 14:58:56 by maheleni         ###   ########.fr       */
+/*   Updated: 2025/04/30 15:41:03 by maheleni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ template<class T>
 Array<T>::Array(const Array & other) {
     _size = other.size();
     _values = new T[_size];
-    for (int i = 0; i < _size; i++) {
+    for (int i = 0; (size_t)i < _size; i++) {
         _values[i] = other._values[i];
     }
 };
@@ -50,7 +50,7 @@ Array<T> & Array<T>::operator=(const Array & other) {
     delete[] _values;
     _size = other.size();
     _values = new T[_size];
-    for (int i = 0; i < _size; i++) {
+    for (int i = 0; (size_t)i < _size; i++) {
         _values[i] = other._values[i];
     }
 };
@@ -62,7 +62,7 @@ unsigned int Array<T>::size() const {
 
 template<class T>
 T & Array<T>::operator[](int i) {
-    if (i < _size) {
+    if ((size_t)i < _size) {
         return (_values[i]);
     }
     throw std::runtime_error("Error: index out of bounds");

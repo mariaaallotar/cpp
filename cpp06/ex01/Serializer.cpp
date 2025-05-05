@@ -6,19 +6,13 @@
 /*   By: maheleni <maheleni@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 15:17:41 by maheleni          #+#    #+#             */
-/*   Updated: 2025/04/09 15:18:52 by maheleni         ###   ########.fr       */
+/*   Updated: 2025/04/30 15:37:41 by maheleni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Serializer.hpp"
 
 Serializer::Serializer() {};
-
-Serializer::Serializer(const Serializer& other) {};
-
-Serializer&	Serializer::operator=(const Serializer& other) {
-    return (*this);
-};
 
 Serializer::~Serializer() {};
 
