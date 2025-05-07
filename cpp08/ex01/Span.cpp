@@ -6,7 +6,7 @@
 /*   By: maheleni <maheleni@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 14:18:32 by maheleni          #+#    #+#             */
-/*   Updated: 2025/05/06 16:16:24 by maheleni         ###   ########.fr       */
+/*   Updated: 2025/05/07 11:18:59 by maheleni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ unsigned int Span::shortestSpan() {
     unsigned int shortest = std::numeric_limits<unsigned int>::max();
     sort(_numbers.begin(), _numbers.end());
     for (unsigned int i = 0; i < (_numbers.size() - 1); i++) {
-        unsigned int span = std::abs((long)_numbers[i] - (long)_numbers[i + 1]);
+        unsigned int span = std::abs(static_cast<long>(_numbers[i]) - static_cast<long>(_numbers[i + 1]));
         if (span <= shortest) {
             shortest = span;
         }
@@ -65,7 +65,7 @@ unsigned int Span::longestSpan() {
         throw (Span::spanImpossible());
     }
     sort(_numbers.begin(), _numbers.end());
-    unsigned int longest = std::abs((long) _numbers[0] - (long) _numbers[_numbers.size() - 1]);
+    unsigned int longest = std::abs(static_cast<long>(_numbers[0]) - static_cast<long>(_numbers[_numbers.size() - 1]));
     return (longest);
 }
 

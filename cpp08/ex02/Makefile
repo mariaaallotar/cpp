@@ -6,16 +6,16 @@
 #    By: maheleni <maheleni@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/01 12:52:33 by maheleni          #+#    #+#              #
-#    Updated: 2025/05/07 11:25:19 by maheleni         ###   ########.fr        #
+#    Updated: 2025/05/07 11:24:49 by maheleni         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = prog
 CC = c++
 FLAGS =  -Wall -Wextra -Werror -std=c++20
-SRCS = main.cpp Span.cpp
+SRCS = main.cpp
 OBJS = $(SRCS:.cpp=.o)
-INCLUDES = Span.hpp
+INCLUDES = MutantStack.hpp
 
 all: $(NAME)
 
