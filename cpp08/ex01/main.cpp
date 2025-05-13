@@ -6,7 +6,7 @@
 /*   By: maheleni <maheleni@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 10:51:49 by maheleni          #+#    #+#             */
-/*   Updated: 2025/05/07 11:22:38 by maheleni         ###   ########.fr       */
+/*   Updated: 2025/05/13 10:44:17 by maheleni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 int main() {
     {
-        std::cout << "\nTest 0: form subject" << std::endl;
+        std::cout << "\nTest 0: from subject" << std::endl;
         try {
             Span sp = Span(5);
             sp.addNumber(6);
@@ -59,7 +59,7 @@ int main() {
         }
     }
     {
-        std::cout << "\nTest 1.5: basic 2" << std::endl;
+        std::cout << "\nTest 1.5: basic 2 (finds the shortest span also in the last two elements)" << std::endl;
         try {
             Span s(5);
             s.addNumber(0);
@@ -93,7 +93,7 @@ int main() {
             s.addNumber(-20);
             s.addNumber(80);
             s.addNumber(0);
-            for (int n : s._numbers) {
+            for (int n : s.getNumbers()) {
                 std::cout << n << std::endl;
             }
             try {

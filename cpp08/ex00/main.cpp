@@ -6,11 +6,12 @@
 /*   By: maheleni <maheleni@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 09:21:15 by maheleni          #+#    #+#             */
-/*   Updated: 2025/05/05 13:33:21 by maheleni         ###   ########.fr       */
+/*   Updated: 2025/05/13 10:20:48 by maheleni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "easyfind.hpp"
+#include <iostream>
 #include <vector>
 #include <deque>
 #include <list>
@@ -20,7 +21,6 @@ int createRandomNumber() {
     std::random_device rd;
     std::mt19937 gen(rd());
     std::uniform_int_distribution<> dist(-100, 100);
-
     return (dist(gen));
 }
 
@@ -33,7 +33,6 @@ std::list<int> createRandomList(int toFind) {
         std::cout << num << std::endl;
         result.push_back(num);
     }
-
     return result;
 }
 

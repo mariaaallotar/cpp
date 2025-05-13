@@ -6,7 +6,7 @@
 /*   By: maheleni <maheleni@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 14:18:32 by maheleni          #+#    #+#             */
-/*   Updated: 2025/05/07 11:18:59 by maheleni         ###   ########.fr       */
+/*   Updated: 2025/05/13 10:42:41 by maheleni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,10 @@ void Span::addNumber(int n) {
     }
     else
         throw Span::capacityException();
+}
+
+std::vector<int> Span::getNumbers() const {
+    return (_numbers);
 }
 
 unsigned int Span::shortestSpan() {
