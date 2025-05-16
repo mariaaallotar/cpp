@@ -6,13 +6,11 @@
 /*   By: maheleni <maheleni@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 14:18:32 by maheleni          #+#    #+#             */
-/*   Updated: 2025/05/13 10:42:41 by maheleni         ###   ########.fr       */
+/*   Updated: 2025/05/13 14:48:17 by maheleni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Span.hpp"
-
-#include <iostream>
 
 Span::Span(unsigned int capacity) : _maxSize(capacity) {
     _numbers.reserve(_maxSize);

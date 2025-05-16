@@ -6,7 +6,7 @@
 /*   By: maheleni <maheleni@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 14:13:15 by maheleni          #+#    #+#             */
-/*   Updated: 2025/05/13 10:29:51 by maheleni         ###   ########.fr       */
+/*   Updated: 2025/05/13 14:48:04 by maheleni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@
 #include <algorithm>
 #include <limits>
 #include <cmath>
-
-#include <iostream>
 
 class Span {
     private:
