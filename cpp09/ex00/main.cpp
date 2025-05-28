@@ -6,7 +6,7 @@
 /*   By: maheleni <maheleni@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 14:56:43 by maheleni          #+#    #+#             */
-/*   Updated: 2025/05/28 09:53:25 by maheleni         ###   ########.fr       */
+/*   Updated: 2025/05/28 10:19:50 by maheleni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,6 @@ int main(int argc, char *argv[]) {
     std::map<std::string, float> dataMap;
     try {
         parseData("data.csv", dataMap);
-        // for(std::map<std::string, float>::const_iterator it = dataMap.begin(); it != dataMap.end(); ++it)
-        // {
-        //     std::cout << it->first << " " << it->second << "\n";
-        // }
         calculateValue(dataMap, argv[1]);
     }
     catch (std::exception & e) {

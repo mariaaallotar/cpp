@@ -6,7 +6,7 @@
 /*   By: maheleni <maheleni@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 14:56:20 by maheleni          #+#    #+#             */
-/*   Updated: 2025/05/28 09:53:37 by maheleni         ###   ########.fr       */
+/*   Updated: 2025/05/28 10:19:19 by maheleni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,10 @@ static int validateDate(std::string dateStr) {
 
 static int checkFirstLine(std::string line, bool & firstLineChecked, int dataFile) {
     if (dataFile && line == "date,exchange_rate") {
-        //std::cout << "first line skipped" << std::endl;     //remove this
         firstLineChecked = 1;
         return (1);
     }
     if (!dataFile && line == "date | value") {
-        //std::cout << "first line skipped" << std::endl;     //remove this
         firstLineChecked = 1;
         return (1);
     }
@@ -60,11 +58,8 @@ static int readFile(std::ifstream & dataFile, std::map<std::string, float> & dat
             dataFile.close();
             throw (e);
         }
-        // std::cout << "Date: " << date << std::endl;
-        // std::cout << "Rate: " << rate << std::endl;
         try {
             validateDate(date);
-            // std::cout << "IS VALID DATE" << std::endl;
             dataMap.insert({date, std::stof(rate)});
         }
         catch (std::exception & e) {
@@ -105,6 +100,21 @@ static float getValue(std::string line) {
     return (value);
 }
 
+static float getExchangeRate(std::map<std::string, float> & dataMap, std::string date) {
+    float rate;
+    try {
+        rate = dataMap.at(date);
+    }
+    catch (std::exception & e) {
+        auto it = dataMap.lower_bound(date);
+        if (it != dataMap.begin()) {
+            it--;
+        }
+        rate = it->second;
+    }
+    return (rate);
+}
+
 void calculateValue(std::map<std::string, float> dataMap, std::string inputFileName) {
     
     std::ifstream inputFile(inputFileName);
@@ -112,10 +122,10 @@ void calculateValue(std::map<std::string, float> dataMap, std::string inputFileN
         std::cout << "Error opening inputfile" << std::endl;
         throw (std::invalid_argument("Error opening inputfile"));
     }
+    bool firstLineChecked = 0;
     for (std::string line; std::getline(inputFile, line, '\n'); ) {
         if (line == "\0" || line == "\n")
             continue ;
-        bool firstLineChecked = 0;
         if (firstLineChecked == 0 && checkFirstLine(line, firstLineChecked, 0)) {
             continue ;
         }
@@ -127,8 +137,6 @@ void calculateValue(std::map<std::string, float> dataMap, std::string inputFileN
             if (value == -1) {
                 continue ;
             }
-            // std::cout << "Date: " << date << std::endl;
-            // std::cout << "Value: " << value << std::endl;
         }
         catch (std::exception & e) {
             std::cout << "Data in inputfile is formatted incorrectly. Error: " << e.what() << std::endl;
@@ -142,20 +150,8 @@ void calculateValue(std::map<std::string, float> dataMap, std::string inputFileN
                 std::cout << "Error: bad input => " << date << std::endl;
                 continue ;
             }
-            //std::cout << "DATE: " << date << std::endl;
-            float exchangeRate;
-            try {
-                exchangeRate = dataMap.at(date);
-            }
-            catch (std::exception & e) {
-                auto it = dataMap.lower_bound(date);
-                if (it != dataMap.begin()) {
-                    it--;
-                }
-                exchangeRate = it->second;
-            }
+            float exchangeRate = getExchangeRate(dataMap, date);
             float result = exchangeRate * value;
-            //std::cout << "exchange rate: " << exchangeRate<< " for date: " << date << " ";
             std::cout << date << " => " << value << " = " << result << std::endl;
         }
         catch (std::exception & e) {
