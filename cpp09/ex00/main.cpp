@@ -6,7 +6,7 @@
 /*   By: maheleni <maheleni@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 14:56:43 by maheleni          #+#    #+#             */
-/*   Updated: 2025/05/16 17:13:37 by maheleni         ###   ########.fr       */
+/*   Updated: 2025/05/28 09:53:25 by maheleni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,13 @@ int main(int argc, char *argv[]) {
         return (0);
     }
     std::map<std::string, float> dataMap;
-    BitcoinExchange be;
     try {
-        be.parseData("data.csv", dataMap);
-        // for(std::map<std::string, int>::const_iterator it = dataMap.begin(); it != dataMap.end(); ++it)
+        parseData("data.csv", dataMap);
+        // for(std::map<std::string, float>::const_iterator it = dataMap.begin(); it != dataMap.end(); ++it)
         // {
         //     std::cout << it->first << " " << it->second << "\n";
         // }
-        be.calculateValue(dataMap, argv[1]);
+        calculateValue(dataMap, argv[1]);
     }
     catch (std::exception & e) {
         std::cout << "Exiting program" << std::endl;
