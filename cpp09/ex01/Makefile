@@ -6,12 +6,12 @@
 #    By: maheleni <maheleni@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/01 12:52:33 by maheleni          #+#    #+#              #
-#    Updated: 2025/05/28 11:19:07 by maheleni         ###   ########.fr        #
+#    Updated: 2025/06/02 14:09:50 by maheleni         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = RPN
-CC = c++ -g
+CC = c++
 FLAGS =  -Wall -Wextra -Werror -std=c++20
 SRCS = main.cpp RPN.cpp
 OBJS = $(SRCS:.cpp=.o)
