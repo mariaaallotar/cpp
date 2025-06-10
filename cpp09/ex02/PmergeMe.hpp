@@ -17,14 +17,26 @@
 #include <map>
 #include <cmath>
 
-// struct {
-//   std::vector<std::string> initialSort;
-//   int elementSize;
-    // std::vector<int> jacobsthal;
-// } info;
+struct element {
+	std::string index;
+	std::vector<std::string> values;
+};
+
+struct sortInfo {
+	std::vector<std::string> args;
+	std::vector<std::string> initialSort;
+	std::vector<element> main;
+	std::vector<element> pend;
+	std::vector<std::string>::iterator outsiders;
+	int elementSize;
+	int level;
+	int comparisons;
+	int totalValues;
+	std::vector<int> jacobsthal;
+};
 
 bool validateArg(std::vector<std::string> args);
 
-std::vector<std::string> mergeInsertSort(std::vector<std::string> args, int level, int size);
+std::vector<std::string> sort(std::vector<std::string> args, int size);
 
 std::vector<int> jacobsthalSequence();

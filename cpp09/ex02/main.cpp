@@ -31,7 +31,7 @@ int main(int argc, char *argv[]) {
     }
     std::cout << std::endl;
     //start time for first
-    std::vector<std::string> result = mergeInsertSort(args, 0, argc - 1);
+    std::vector<std::string> result = sort(args, argc - 1);
     std::cout << "\nAfter : " << std::flush;
     for (std::string s : result) {
         std::cout << s << " " << std::flush;
