@@ -6,20 +6,44 @@
 /*   By: maheleni <maheleni@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/02 14:21:41 by maheleni          #+#    #+#             */
-/*   Updated: 2025/06/03 14:40:58 by maheleni         ###   ########.fr       */
+/*   Updated: 2025/07/30 10:54:36 by maheleni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PmergeMe.hpp"
 
-// void binaryInsert(std::vector<std::string> element, std::vector<std::string> & main) {
-//     int elements = 
-// }
+void binaryInsert(std::vector<element>::iterator toInsert, std::vector<element> & main) {
+    auto searchStart  = main.begin();
+    auto searchEnd = getElement(toInsert->index, main);
+    
+
+    while (searchStart->values.end() - 1 < searchEnd->values.end() - 1) {
+        auto mid = searchStart + (searchEnd - searchStart) / 2;
+
+        if (mid->values.end() - 1 < toInsert->values.end() - 1) {
+            searchStart = mid + 1;
+        } else {
+            searchEnd = mid;
+        }
+    }
+    main.insert(searchStart, *toInsert);
+}
+
+std::vector<element>::iterator getElement(int jacobsthal, std::vector<element> & vector) {
+    for (auto it = vector.begin(); it != vector.end(); it++) {
+        if (it->index == jacobsthal) {
+            return (it);
+        }
+    }
+    return (vector.end());
+}
 
 std::vector<std::string> mergeInsertSort(sortInfo info) {
 
 	std::cout << "\nLEVEL: " << info.level << std::endl;
 	std::cout << "Comparisons: " << info.comparisons << std::endl;
+    std::cout << "Element size: " << info.elementSize << std::endl;
+    
 	for (std::string s : info.args) {
 		std::cout << s << " " << std::flush;
 	}
@@ -36,7 +60,6 @@ std::vector<std::string> mergeInsertSort(sortInfo info) {
 		rightBegin = info.args.begin() + 2 * i * info.elementSize + info.elementSize;
 		rightEnd = info.args.begin() + 2 * i * info.elementSize + 2 * info.elementSize;
         if (*(rightEnd - 1) < *(leftEnd - 1)) {
-			std::cout << *(rightEnd - 1) << " is smaller than " << *(leftEnd - 1) << std::endl;
             info.initialSort.insert(info.initialSort.end(), rightBegin, rightEnd);
             info.initialSort.insert(info.initialSort.end(), leftBegin, leftEnd);
         }
@@ -44,20 +67,21 @@ std::vector<std::string> mergeInsertSort(sortInfo info) {
             info.initialSort.insert(info.initialSort.end(), leftBegin, rightEnd);
         }
     }
-
-	std::cout << "After initial sort: " << std::endl;
-	for (std::string s : info.initialSort) {
-		std::cout << s << " " << std::flush;
-	}
-	std::cout << std::endl;
-
+    
 	info.outsiders = info.args.begin() + info.initialSort.size();
     for (int i = info.initialSort.size(); i < info.totalValues; i++) {
         info.initialSort.insert(info.initialSort.end(), info.args[i]);
     }
-
+    
+    std::cout << "After initial sort: " << std::endl;
+    for (std::string s : info.initialSort) {
+        std::cout << s << " " << std::flush;
+    }
+    std::cout << std::endl;
+    
     if (info.elementSize * 4 <= info.totalValues) {
-        // std::cout << "Going deeper into recursion because size is: " << info.totalValues << " and the new element size will be: " << info.elementSize * 2 << std::endl;
+        //std::cout << "Going deeper into recursion because size is: " << info.totalValues << " and the new element size will be: " << info.elementSize * 2 << std::endl;
+        std::cout << "Going deeper into recursion" << "----------------------------------" << std::endl;
         sortInfo newInfo = info;
 		newInfo.level = info.level + 1;
 		newInfo.elementSize = std::pow(2, newInfo.level);
@@ -67,20 +91,31 @@ std::vector<std::string> mergeInsertSort(sortInfo info) {
 		info.initialSort = mergeInsertSort(newInfo);
     }
 
+    std::cout << "\nLEVEL: " << info.level << std::endl;
+	std::cout << "Comparisons: " << info.comparisons << std::endl;
+    std::cout << "Element size: " << info.elementSize << std::endl;
+
+    std::cout << "Making main and pend form: " << std::endl;
+    for (std::string s : info.initialSort) {
+        std::cout << s << " " << std::flush;
+    }
+    std::cout << std::endl;
+
+    auto it = info.initialSort.begin();
     for (int i = 0; i < info.comparisons; i++) {
-		leftBegin = info.initialSort.begin() + 2 * i * info.elementSize;
-		leftEnd = info.initialSort.begin() + 2 * i * info.elementSize + info.elementSize;
-		rightBegin = info.initialSort.begin() + 2 * i * info.elementSize + info.elementSize;
-		rightEnd = info.initialSort.begin() + 2 * i * info.elementSize + 2 * info.elementSize;
+		leftBegin = it;
+		leftEnd = it + info.elementSize;
+		rightBegin = it + info.elementSize;
+		rightEnd = it + 2 * info.elementSize;
 		if (i == 0) {
-			std::cout << "Adding both b1 and a1 to main" << std::endl;
-			std::cout << "start of b1 " << *(leftBegin) << std::endl;
-			info.main.insert(info.main.end(), {"b1", std::vector<std::string>(leftBegin, leftEnd)});
-			info.main.insert(info.main.end(), {"a1", std::vector<std::string>(rightBegin, rightEnd)});
+			info.main.insert(info.main.end(), {i + 1, std::vector<std::string>(leftBegin, leftEnd)});
+			info.main.insert(info.main.end(), {i + 1, std::vector<std::string>(rightBegin, rightEnd)});
+            it += info.elementSize;
 			continue ;
 		}
-        info.pend.insert(info.pend.end(), {"b" + std::to_string(i + 1), std::vector<std::string>(leftBegin, leftEnd)});
-		info.main.insert(info.main.end(), {"a" + std::to_string(i + 1), std::vector<std::string>(rightBegin, rightEnd)});
+        info.pend.insert(info.pend.end(), {i + 1, std::vector<std::string>(leftBegin, leftEnd)});
+		info.main.insert(info.main.end(), {i + 1, std::vector<std::string>(rightBegin, rightEnd)});
+        it += info.elementSize;
     }
 
     std::cout << "Elements in main: " << std::endl;
@@ -103,18 +138,32 @@ std::vector<std::string> mergeInsertSort(sortInfo info) {
     }
     std::cout << std::endl;
 
-    // for (int i = 3; (unsigned long) i < pend.size(); i++) {
-    //     try {
-    //         binaryInsert(pend[jacobsthal[i]], main);
-    //         pend.erase(jacobsthal[i]);
-    //     }
-    //     catch (...) {
-            
-    //     }
-        
-    // }
+    int elementsInPend = info.pend.size();
+    for (int i = 3; i <= elementsInPend; i++) {     //i is the index in jacobsthal
+        for (int j = info.jacobsthal[i]; j >= 2 && j > info.jacobsthal[i - 1]; i--) {   //j is the actual jacobsthal to insert
+            try {
+                auto elementIt = getElement(j, info.pend);
+                binaryInsert(elementIt, info.main);
+                info.pend.erase(elementIt);
+            }
+            catch (...) {
+                
+            }
+        }
+    }
+    while (!info.pend.empty()) {
+        binaryInsert(info.pend.end() -1, info.main);
+        info.pend.erase(info.pend.end() -1);
+    }
+
+    std::vector<std::string> sorted;
+    for (element e : info.main) {
+        for (std::string str : e.values) {
+            sorted.insert(sorted.end(), str);
+        }
+    }
     
-    return (info.initialSort);
+    return (sorted);
 }
 
 std::vector<std::string> sort(std::vector<std::string> args, int size) {
@@ -124,6 +173,11 @@ std::vector<std::string> sort(std::vector<std::string> args, int size) {
 	info.args = args;
 	info.totalValues = size;
 	info.comparisons = info.totalValues / (info.elementSize * 2);
+    info.jacobsthal = jacobsthalSequence();
+    for (int i : info.jacobsthal) {
+        std::cout << i << " " << std::flush;
+    }
+    std::cout << std::endl;
 	return (mergeInsertSort(info));
 }
 

@@ -6,7 +6,7 @@
 /*   By: maheleni <maheleni@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/02 14:14:20 by maheleni          #+#    #+#             */
-/*   Updated: 2025/06/03 14:39:30 by maheleni         ###   ########.fr       */
+/*   Updated: 2025/07/29 12:12:58 by maheleni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 #include <cmath>
 
 struct element {
-	std::string index;
+	int index;
 	std::vector<std::string> values;
 };
 
@@ -40,3 +40,5 @@ bool validateArg(std::vector<std::string> args);
 std::vector<std::string> sort(std::vector<std::string> args, int size);
 
 std::vector<int> jacobsthalSequence();
+
+std::vector<element>::iterator getElement(int jacobsthal, std::vector<element> & vector);

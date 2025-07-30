@@ -6,7 +6,7 @@
 /*   By: maheleni <maheleni@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/02 14:04:45 by maheleni          #+#    #+#             */
-/*   Updated: 2025/06/03 12:39:47 by maheleni         ###   ########.fr       */
+/*   Updated: 2025/07/29 12:12:00 by maheleni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,16 +21,11 @@ int main(int argc, char *argv[]) {
     if (validateArg(args) == false) {
         return (0);
     }
-    std::vector<int> jacobsthal = jacobsthalSequence();
-    // for (int i : jacobsthal) {
-    //     std::cout << i << std::endl;
-    // }
     std::cout << "Before : " << std::flush;
     for (std::string s : args) {
         std::cout << s << " " << std::flush;
     }
     std::cout << std::endl;
-    //start time for first
     std::vector<std::string> result = sort(args, argc - 1);
     std::cout << "\nAfter : " << std::flush;
     for (std::string s : result) {
