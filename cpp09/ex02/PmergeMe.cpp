@@ -6,7 +6,7 @@
 /*   By: maheleni <maheleni@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/02 14:21:41 by maheleni          #+#    #+#             */
-/*   Updated: 2025/07/30 10:54:36 by maheleni         ###   ########.fr       */
+/*   Updated: 2025/07/30 14:35:18 by maheleni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -191,9 +191,11 @@ std::vector<int> jacobsthalSequence() {
 
 bool validateArg(std::vector<std::string> args) {
     for (std::string s : args) {
-        if (s.length() != 1 || std::string("0123456789").find(s) == std::string::npos) {
-            std::cout << "This value is not supported: " << s << std::endl;
-            return (false);
+        for (char c : s) {
+            if (std::string("0123456789").find(c) == std::string::npos) {
+                std::cout << "This value is not supported: " << s << std::endl;
+                return (false);
+            }
         }
     }
     return (true);
