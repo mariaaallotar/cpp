@@ -50,7 +50,7 @@ When we hit the beginning of pend we will jump to the next Jacobsthal number: 5.
 <img width="2216" height="662" alt="image" src="https://github.com/user-attachments/assets/1d4bf898-9c7a-43e8-8047-84f4d6f1d88c" />
 <img width="2262" height="644" alt="image" src="https://github.com/user-attachments/assets/0b260314-a4c4-4093-b41e-7a03d2549b67" />
 
-You might notice that the area to search for the correct insertionspot stays the same for each Jacobsthal number and under wven though we add more values into the main, this is the optimization of this algorithm. 
+You might notice that the area of search for the correct insertion position stays constant for each Jacobsthal number and under even though we add more values into main, this is the optimization of this algorithm. 
 
 We will increment the Jacobsthal number and insert in decending order from that so long that there is no more `bx` (x is the next Jacobsthal), at this point just insert all elements from the end of pend in decending order.   
 
