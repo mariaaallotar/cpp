@@ -6,7 +6,7 @@
 /*   By: maheleni <maheleni@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/02 14:14:20 by maheleni          #+#    #+#             */
-/*   Updated: 2025/07/30 14:10:36 by maheleni         ###   ########.fr       */
+/*   Updated: 2025/08/04 14:06:09 by maheleni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,13 @@
 
 struct element {
 	int index;
-	std::string value;
-	std::vector<std::string> element_vec;
+	int value;
+	std::vector<int> element_vec;
 };
 
 struct sortInfo {
-	std::vector<std::string> args;
-	std::vector<std::string> initialSort;
+	std::vector<int> args;
+	std::vector<int> initialSort;
 	std::vector<element> main;
 	std::vector<element> pend;
 	element outsider;
@@ -37,9 +37,9 @@ struct sortInfo {
 	std::vector<int> jacobsthal;
 };
 
-bool validateArg(std::vector<std::string> args);
+std::vector<int> createArgVec(char *argv[]);
 
-std::vector<std::string> sort(std::vector<std::string> args, int size);
+std::vector<int> sort(std::vector<int> args, int size);
 
 std::vector<int> jacobsthalSequence();
 

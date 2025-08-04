@@ -6,7 +6,7 @@
 /*   By: maheleni <maheleni@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/02 14:04:45 by maheleni          #+#    #+#             */
-/*   Updated: 2025/07/29 12:12:00 by maheleni         ###   ########.fr       */
+/*   Updated: 2025/08/04 14:06:24 by maheleni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,18 +17,22 @@ int main(int argc, char *argv[]) {
         std::cout << "This program needs a positive integer sequence as argument" << std::endl;
         return (0);
     }
-    std::vector<std::string> args(argv + 1, argv + argc);
-    if (validateArg(args) == false) {
-        return (0);
+    std::vector<int> args;
+    try {
+        args = createArgVec(argv + 1);
+    }
+    catch (std::exception & e) {
+        std::cout << "error: " << e.what() << std::endl;
+        return (1);
     }
     std::cout << "Before : " << std::flush;
-    for (std::string s : args) {
-        std::cout << s << " " << std::flush;
+    for (int i : args) {
+        std::cout << i << " " << std::flush;
     }
     std::cout << std::endl;
-    std::vector<std::string> result = sort(args, argc - 1);
+    std::vector<int> result = sort(args, argc - 1);
     std::cout << "\nAfter : " << std::flush;
-    for (std::string s : result) {
-        std::cout << s << " " << std::flush;
+    for (int i : result) {
+        std::cout << i << " " << std::flush;
     }
 }

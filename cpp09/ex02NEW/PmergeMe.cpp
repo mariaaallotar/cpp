@@ -2,22 +2,13 @@
 #include "PmergeMe.hpp"
 
 std::vector<element>::iterator getElement(int jacobsthal, std::vector<element> & vector) {
-    // std::cout << "Index to find: " << jacobsthal << std::endl;
     for (auto it = vector.begin(); it != vector.end(); it++) {
-        // std::cout << "Index of current element: " << it->index << std::endl;
         if (it->index == jacobsthal) {
-            // std::cout << "Returning element: " << " {" << std::flush;
-            // for (const auto& value : it->element_vec) {
-            //     std::cout << value << " ";
-            // }
-            // std::cout << "}" << std::endl;
             return (it);
         }
     }
     return (vector.end() - 1);
 }
-
-#include <unistd.h>
 
 void binaryInsertOutsider(element toInsert, std::vector<element> & main) {
     std::cout << "Going to insert outsider element: " << std::flush;
@@ -32,40 +23,25 @@ void binaryInsertOutsider(element toInsert, std::vector<element> & main) {
     auto end = main.end() - 1;
     // std::cout << "search end: " << end->value << std::endl;
 
-    std::vector<element>::iterator insertBefore;
     while (start->value < end->value) {
         auto mid = start + (end - start) / 2;
         std::cout << "\tstart: " << start->value << std::endl;
         std::cout << "\tmid value: " << mid->value << std::endl;
         std::cout << "\tend: " << end->value << std::endl;
-        if (mid->value == toInsert.value || mid->value == start->value)  {
-            insertBefore = mid;
-            break ;
-        }
-        else if (toInsert.value > mid->value) {
+        if (toInsert.value > mid->value) {
             start = mid + 1;
         } else {
             end = mid;
         }
     }
-
-    if (insertBefore->value < toInsert.value) {
-        std::cout << "adding to the end of main" << std::endl;
-        insertBefore = main.end();
+    std::cout << "Inserting: " << std::flush;
+    std::cout << " {" << std::flush;
+    for (const auto& value : toInsert.element_vec) {
+        std::cout << value << " ";
     }
-    else {
-        insertBefore = end;
-        std::cout << "insert before value: " << insertBefore->value << std::endl;
-    
-        std::cout << "Inserting: " << std::flush;
-        std::cout << " {" << std::flush;
-        for (const auto& value : toInsert.element_vec) {
-            std::cout << value << " ";
-        }
-        std::cout << "}" << "before " << insertBefore->value << std::endl;
-    }
+    std::cout << "}" << "before " << end->value << std::endl;
 
-    main.insert(insertBefore, toInsert);
+    main.insert(end, toInsert);
 }
 
 void binaryInsert(std::vector<element>::iterator toInsert, std::vector<element> & main) {
@@ -82,31 +58,14 @@ void binaryInsert(std::vector<element>::iterator toInsert, std::vector<element> 
     auto end = getElement(toInsert->index, main);
     // std::cout << "search end: " << end->value << std::endl;
 
-    std::vector<element>::iterator insertBefore;
     while (start->value < end->value) {
         auto mid = start + (end - start) / 2;
         std::cout << "\tstart: " << start->value << std::endl;
         std::cout << "\tmid value: " << mid->value << std::endl;
         std::cout << "\tend: " << end->value << std::endl;
-        if (mid->value == toInsert->value)  {
-            if (toInsert->value == "3") {
-                std::cout << "insertBefore is set to mid: " << mid->value << std::endl;
-            }
-            insertBefore = mid;
-            break ;
-        }
-        else if (toInsert->value > mid->value) {
-            if (toInsert->value == "3") {
-                std::cout << toInsert->value << " is BIGGER than " << mid->value << std::endl;
-            }
-            if (toInsert->value == "3") {
-                std::cout << "start is set to mid" << std::endl;
-            }
+        if (toInsert->value > mid->value) {
             start = mid + 1;
         } else {
-            if (toInsert->value == "3") {
-                std::cout << "end is set to mid: " << mid->value << std::endl;
-            }
             end = mid;
         }
     }
@@ -123,50 +82,19 @@ void binaryInsert(std::vector<element>::iterator toInsert, std::vector<element> 
     main.insert(end, *toInsert);
 }
 
-// void binaryInsert(std::vector<element>::iterator toInsert, std::vector<element> & main) {
-//     std::cout << "\nIn binary insert" << std::endl;
-//     auto searchStart  = main.begin();
-//     std::cout << "search start: " << searchStart->value << std::endl;
-//     auto searchEnd = getElement(toInsert->index, main);
-//     std::cout << "search end: " << searchEnd->value << std::endl;
-
-//     while (searchStart->value < searchEnd->value) {
-//         auto mid = searchStart + (searchEnd - searchStart) / 2;
-
-//         std::cout << "MID: " << mid->value << std::endl;
-
-//         if (toInsert->value > mid->value) {
-//             searchStart = mid + 1;
-//         } else {
-//             searchEnd = mid;
-//         }
-//     }
-
-//     std::cout << "SearchStart value: " << searchStart->value << std::endl;
-
-//     std::cout << "Inserting: " << std::flush;
-//     std::cout << toInsert->index << " {" << std::flush;
-//     for (const auto& value : toInsert->element_vec) {
-//         std::cout << value << " ";
-//     }
-//     std::cout << "}" << "before " << searchStart->value << std::endl;
-
-//     main.insert(searchStart, *toInsert);
-// }
-
-std::vector<std::string> mergeInsertSort(sortInfo info) {
+std::vector<int> mergeInsertSort(sortInfo info) {
     std::cout << "\nLEVEL: " << info.level << std::endl;
     std::cout << "Element size: " << info.elementSize << std::endl;
 
-    for (std::string s : info.args) {
-		std::cout << s << " " << std::flush;
+    for (int i : info.args) {
+		std::cout << i << " " << std::flush;
 	}
     std::cout << std::endl;
 
-    std::vector<std::string>::iterator leftBegin;
-	std::vector<std::string>::iterator leftEnd;
-	std::vector<std::string>::iterator rightBegin;
-	std::vector<std::string>::iterator rightEnd;
+    std::vector<int>::iterator leftBegin;
+	std::vector<int>::iterator leftEnd;
+	std::vector<int>::iterator rightBegin;
+	std::vector<int>::iterator rightEnd;
 
     std::cout << "Comparisons: " << info.comparisons << std::endl;
     for (int i = 0; i < info.comparisons; i++) {
@@ -191,14 +119,14 @@ std::vector<std::string> mergeInsertSort(sortInfo info) {
     }
 
     std::cout << "After initial sort: " << std::endl;
-    for (std::string s : info.initialSort) {
-        std::cout << s << " " << std::flush;
+    for (int i : info.initialSort) {
+        std::cout << i << " " << std::flush;
     }
     std::cout << std::endl;
 
     std::cout << "Outsider: " << std::endl;
-    for (std::string s : info.outsider.element_vec) {
-        std::cout << s << " " << std::flush;
+    for (int i : info.outsider.element_vec) {
+        std::cout << i << " " << std::flush;
     }
     std::cout << std::endl;
 
@@ -296,22 +224,22 @@ std::vector<std::string> mergeInsertSort(sortInfo info) {
         binaryInsertOutsider(info.outsider, info.main);
     }
 
-    std::vector<std::string> sorted;
+    std::vector<int> sorted;
     for (element e : info.main) {
-        for (std::string str : e.element_vec) {
-            sorted.insert(sorted.end(), str);
+        for (int i : e.element_vec) {
+            sorted.insert(sorted.end(), i);
         }
     }
 
     std::cout << "RETURNING: " << std::endl;
-    for (std::string s : sorted) {
-        std::cout << s << " " << std::flush;
+    for (int i : sorted) {
+        std::cout << i << " " << std::flush;
     }
     std::cout << std::endl;
     return (sorted);
 }
 
-std::vector<std::string> sort(std::vector<std::string> args, int size) {
+std::vector<int> sort(std::vector<int> args, int size) {
 	sortInfo info;
 	info.level = 0;
 	info.elementSize = 1;
@@ -331,14 +259,11 @@ std::vector<int> jacobsthalSequence() {
     return (result);
 }
 
-bool validateArg(std::vector<std::string> args) {
-    for (std::string s : args) {
-        for (char c : s) {
-            if (std::string("0123456789").find(c) == std::string::npos) {
-                std::cout << "This value is not supported: " << s << std::endl;
-                return (false);
-            }
-        }
+std::vector<int> createArgVec(char *argv[]) {
+    std::vector<int> argVec;
+    for (int i = 0; argv[i] != NULL; i++) {
+        int num = std::stoi(argv[i]);
+        argVec.push_back(num);
     }
-    return (true);
+    return (argVec);
 }
