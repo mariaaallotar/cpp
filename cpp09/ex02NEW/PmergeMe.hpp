@@ -6,7 +6,7 @@
 /*   By: maheleni <maheleni@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/02 14:14:20 by maheleni          #+#    #+#             */
-/*   Updated: 2025/08/04 14:06:09 by maheleni         ###   ########.fr       */
+/*   Updated: 2025/08/04 16:07:36 by maheleni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,10 @@
 #include <vector>
 #include <map>
 #include <cmath>
+
+#define COMMENTS 1
+
+int comparisons = 0;
 
 struct element {
 	int index;
