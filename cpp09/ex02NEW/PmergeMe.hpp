@@ -6,7 +6,7 @@
 /*   By: maheleni <maheleni@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/02 14:14:20 by maheleni          #+#    #+#             */
-/*   Updated: 2025/08/04 16:07:36 by maheleni         ###   ########.fr       */
+/*   Updated: 2025/08/04 17:30:55 by maheleni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@
 #include <cmath>
 
 #define COMMENTS 1
-
-int comparisons = 0;
 
 struct element {
 	int index;
@@ -46,5 +44,3 @@ std::vector<int> createArgVec(char *argv[]);
 std::vector<int> sort(std::vector<int> args, int size);
 
 std::vector<int> jacobsthalSequence();
-
-std::vector<element>::iterator getElement(int jacobsthal, std::vector<element> & vector);
