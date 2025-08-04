@@ -1,6 +1,6 @@
 # Ford-Johnson algorithm explained
 Let us sort `8 11 13 15 9 2 1 4 5 3 12 6 10 14 7` using merge insertion as defined by Ford and Johnson
-in [this paper](https://seriouscomputerist.atariverse.com/media/pdf/book/Art%20of%20Computer%20Programming%20-%20Volume%203%20(Sorting%20&%20Searching).pdf).
+in [this paper](https://seriouscomputerist.atariverse.com/media/pdf/book/Art%20of%20Computer%20Programming%20-%20Volume%203%20(Sorting%20&%20Searching).pdf). The algorithm makes the least amount of comparisons possible.   
 
 Let's start by following the steps found in the original paper:   
 <img width="855" height="289" alt="Screenshot 2025-08-04 at 20 13 05" src="https://github.com/user-attachments/assets/f6a78d52-552f-4b62-8a7a-565f1ba30860" />
@@ -37,7 +37,9 @@ Now the relationships of the named numbers are correct, we can proceed.
 The main will always be sorted. The outsider will still stay as such, because we do not now anything about it's relationship to any other number.
 
 ### 3.3 Inserting from pend to main
-Inserting numbers from pend to main is done with binary insertion, this is optimal because we know that main is sorted. And because we know that `bx` is always smaller than `ax`, we only need to look for the correct sport for `bx` in main from the beginning of main until `ax`. We will be inserting the numbers in a specific order that further minimizes the comparisons made. The order is based on the Jacobsthal sequence: `0, 1, 1, 3, 5, 11, 21, 43, 85, 171, 341, 683, 1365, 2731, 5461, ...`.    
+Inserting numbers from pend to main is done with binary insertion, this is optimal because we know that main is sorted. Because we know that `bx` is always smaller than `ax`, we only need to look for the correct spot for `bx` in main from the beginning of main until `ax`.    
+   
+We will be inserting the numbers in a specific order that further minimizes the comparisons made. The order is based on the Jacobsthal sequence: `0, 1, 1, 3, 5, 11, 21, 43, 85, 171, 341, 683, 1365, 2731, 5461, ...`.    
    
 We will insert the numbers from pend into main starting from `b3` (3 is the first Jacobsthal number we use), then in decending order. 
 
@@ -50,7 +52,7 @@ When we hit the beginning of pend we will jump to the next Jacobsthal number: 5.
 <img width="2216" height="662" alt="image" src="https://github.com/user-attachments/assets/1d4bf898-9c7a-43e8-8047-84f4d6f1d88c" />
 <img width="2262" height="644" alt="image" src="https://github.com/user-attachments/assets/0b260314-a4c4-4093-b41e-7a03d2549b67" />
 
-You might notice that the area of search for the correct insertion position stays constant for each Jacobsthal number and under even though we add more values into main, this is the optimization of this algorithm. 
+You might notice that the area of search for the correct insertion position stays constant for each Jacobsthal number though we add more values into main, this is the optimization of this algorithm. 
 
 We will increment the Jacobsthal number and insert in decending order from that so long that there is no more `bx` (x is the next Jacobsthal), at this point just insert all elements from the end of pend in decending order.   
 
