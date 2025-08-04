@@ -22,10 +22,40 @@ This can be visualized through this diagram:
 <img width="1132" height="220" alt="image" src="https://github.com/user-attachments/assets/125af169-5fbb-4308-b1e1-fb1f375ddeee" />   
 The arrows respresent the relationship between the numbers, the arrow always points to the bigger of the two numbers.   
 
-<img width="1208" height="576" alt="image" src="https://github.com/user-attachments/assets/a3907de3-9990-4b54-91d7-8df5fed0020c" />
+### 3.1 Naming the numbers
+<img width="1208" height="576" alt="image" src="https://github.com/user-attachments/assets/a3907de3-9990-4b54-91d7-8df5fed0020c" />   
+
+    
 You might notice that our numbers do not follow the important relationship that is needed for the algorithm to work optimally.   
 The a:s are correct: `a1 <= a2 <= .... <= a7`. But the b:s do not follow the a:s: `b1 !< a1`. This is because whenever we move the bigger number in the pair, the smaller one ***must*** follow.   
 
 <img width="1814" height="1358" alt="image" src="https://github.com/user-attachments/assets/2e042a13-44ca-4f5b-9796-94f028eca408" />
 Now the relationships of the named numbers are correct, we can proceed.   
-We can now create the `main` and the `pend`.   
+   
+### 3.2 Creating the main and the pend
+<img width="1714" height="664" alt="image" src="https://github.com/user-attachments/assets/bac03484-c9e9-45a3-8207-0a914255d301" />   
+The main will always be sorted. The outsider will still stay as such, because we do not now anything about it's relationship to any other number.
+
+### 3.3 Inserting from pend to main
+Inserting numbers from pend to main is done with binary insertion, this is optimal because we know that main is sorted. And because we know that `bx` is always smaller than `ax`, we only need to look for the correct sport for `bx` in main from the beginning of main until `ax`. We will be inserting the numbers in a specific order that further minimizes the comparisons made. The order is based on the Jacobsthal sequence: `0, 1, 1, 3, 5, 11, 21, 43, 85, 171, 341, 683, 1365, 2731, 5461, ...`.    
+   
+We will insert the numbers from pend into main starting from `b3` (3 is the first Jacobsthal number we use), then in decending order. 
+
+<img width="1806" height="706" alt="image" src="https://github.com/user-attachments/assets/31358110-da5b-43be-842c-e1ed2aa6545c" />   
+<img width="2046" height="666" alt="image" src="https://github.com/user-attachments/assets/8fdd33fa-6f2a-4208-b196-b07befe7b43c" />    
+
+
+When we hit the beginning of pend we will jump to the next Jacobsthal number: 5. And start inserting starting from `b5` in decending order. 
+
+<img width="2216" height="662" alt="image" src="https://github.com/user-attachments/assets/1d4bf898-9c7a-43e8-8047-84f4d6f1d88c" />
+<img width="2262" height="644" alt="image" src="https://github.com/user-attachments/assets/0b260314-a4c4-4093-b41e-7a03d2549b67" />
+
+You might notice that the area to search for the correct insertionspot stays the same for each Jacobsthal number and under wven though we add more values into the main, this is the optimization of this algorithm. 
+
+We will increment the Jacobsthal number and insert in decending order from that so long that there is no more `bx` (x is the next Jacobsthal), at this point just insert all elements from the end of pend in decending order.   
+
+
+
+
+
+
