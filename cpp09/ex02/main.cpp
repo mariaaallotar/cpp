@@ -6,7 +6,7 @@
 /*   By: maheleni <maheleni@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/02 14:04:45 by maheleni          #+#    #+#             */
-/*   Updated: 2025/08/05 11:49:13 by maheleni         ###   ########.fr       */
+/*   Updated: 2025/08/06 14:53:40 by maheleni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ int main(int argc, char *argv[]) {
     std::cout << "Time to process a range of " << argc - 1 << " elements with std::vector: " << durationVec.count() << "us" << std::endl;
     std::cout << "Time to process a range of " << argc - 1 << " elements with std::deque: " << durationDeq.count() << "us" << std::endl;
 
-    if (COMMENTS) {
+    if (COMPARISONS) {
         std::cout << "\nMax comparisons allowed: " << maxComparisons(argc - 1) << std::endl;
     }
 }

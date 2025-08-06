@@ -6,7 +6,7 @@
 /*   By: maheleni <maheleni@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/02 14:14:20 by maheleni          #+#    #+#             */
-/*   Updated: 2025/08/05 11:44:30 by maheleni         ###   ########.fr       */
+/*   Updated: 2025/08/06 15:11:17 by maheleni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@
 #include <map>
 #include <cmath>
 
-#define COMMENTS 1
+#define COMMENTS 0
+#define COMPARISONS 1
 
 template<template<typename, typename> class Container>
 struct element {

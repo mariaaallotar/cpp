@@ -12,38 +12,7 @@ std::deque<element<std::deque>>::iterator getElement(int jacobsthal, std::deque<
             return (it);
         }
     }
-    return (deque.end() - 1);
-}
-
-void binaryInsertOutsider(element<std::deque> toInsert, std::deque<element<std::deque>> & main) {
-
-    auto start = main.begin();
-    auto end = main.end();
-
-    while (start < end) {
-        auto mid = start + (end - start) / 2;
-        if (mid->value < toInsert.value) {
-            start = mid + 1;
-        } else {
-            end = mid;
-        }
-        comparisonCounter++;
-        std::cout << "comparisons made: " << comparisonCounter << std::endl;
-    }
-
-    if (COMMENTS) {
-        std::cout << "Inserting: " << std::flush;
-        std::cout << "value: " << toInsert.value << " {" << std::flush;
-        for (const auto& value : toInsert.element_vec) {
-            std::cout << value << " ";
-        }
-        if (start == main.end()) {
-            std::cout << "}" << " before end." << std::endl;
-        }
-        std::cout << "}" << " before " << start->value << std::endl;
-    }
-
-    main.insert(start, toInsert);
+    return (deque.end());
 }
 
 void binaryInsert(element<std::deque> toInsert, std::deque<element<std::deque>> & main) {
@@ -53,15 +22,12 @@ void binaryInsert(element<std::deque> toInsert, std::deque<element<std::deque>> 
 
     while (start < end) {
         auto mid = start + (end - start) / 2;
-        std::cout << "start: " << start->value << " mid: " << mid->value << " end: " << end->value << std::endl;
-        std::cout << "comparing " << mid->value << " to " << toInsert.value << std::endl;
         if (mid->value < toInsert.value) {
             start = mid + 1;
         } else {
             end = mid;
         }
         comparisonCounter++;
-        std::cout << "comparisons made: " << comparisonCounter << std::endl;
     }
 
     if (COMMENTS) {
@@ -70,7 +36,7 @@ void binaryInsert(element<std::deque> toInsert, std::deque<element<std::deque>> 
         for (const auto& value : toInsert.element_vec) {
             std::cout << value << " ";
         }
-        std::cout << "}" << " before " << end->value << std::endl;
+        std::cout << "}" << " before " << start->value << std::endl;
     }
 
     main.insert(start, toInsert);
@@ -113,7 +79,8 @@ void createMainAndPend(sortInfo<std::deque> & info) {
 	std::deque<int>::iterator rightEnd;
 
     auto it = info.initialSort.begin();
-    for (int i = 0; i < info.comparisons; i++) {
+    int i = 0;
+    for ( ; i < info.comparisons; i++) {
         if (it >= info.initialSort.end()) {
             break ;
         }
@@ -140,6 +107,12 @@ void createMainAndPend(sortInfo<std::deque> & info) {
         it += 2 * info.elementSize;
     }
 
+    if (!info.outsider.element_vec.empty()) {
+        info.outsider.index = i + 1;
+        info.pend.insert(info.pend.end(), info.outsider);
+        info.outsider.element_vec.clear();
+    }
+
     if (COMMENTS) {
         std::cout << "Elements in main: " << std::endl;
         for (element e : info.main) {
@@ -160,15 +133,6 @@ void createMainAndPend(sortInfo<std::deque> & info) {
             std::cout << "}" << std::endl;
         }
         std::cout << std::endl;
-
-        if (!info.outsider.element_vec.empty()) {
-            std::cout << "Outsider element: " <<std::endl;
-            std::cout << "value: " << info.outsider.value << " {" << std::flush;
-            for (const auto& value : info.outsider.element_vec) {
-                std::cout << value << " ";
-            }
-            std::cout << "}\n" << std::endl;
-        }
     }
 }
 
@@ -215,7 +179,6 @@ std::deque<int> mergeInsertSort(sortInfo<std::deque> info) {
 
 		info.initialSort = mergeInsertSort(newInfo);
         if (COMMENTS) {
-            std::cout << "\nComparisons used: " << comparisonCounter << std::endl;
             std::cout << "\nGetting back from recursion" << "----------------------------------" << std::endl;
             std::cout << "\nLEVEL: " << info.level << std::endl;
             std::cout << "Element size: " << info.elementSize << std::endl;
@@ -232,6 +195,9 @@ std::deque<int> mergeInsertSort(sortInfo<std::deque> info) {
                     break ;
                 }
                 auto elementIt = getElement(j, info.pend);
+                if (j > elementIt->index) {
+                    break ;
+                }
                 binaryInsert(*(elementIt), info.main);
                 info.pend.erase(elementIt);
             }
@@ -247,9 +213,6 @@ std::deque<int> mergeInsertSort(sortInfo<std::deque> info) {
         info.pend.erase(info.pend.end() -1);
     }
 
-    if (!info.outsider.element_vec.empty()) {
-        binaryInsertOutsider(info.outsider, info.main);
-    }
 
     std::deque<int> sorted;
     for (element e : info.main) {
@@ -270,7 +233,9 @@ std::deque<int> mergeInsertSort(sortInfo<std::deque> info) {
 }
 
 std::deque<int> sort(std::deque<int> args, int size) {
-    std::cout << "\n----DEQUE---------------------------------------------------------------------------" << std::endl;
+    if (COMMENTS) {
+        std::cout << "\n----DEQUE---------------------------------------------------------------------------" << std::endl;
+    }
 	sortInfo<std::deque> info;
 	info.level = 0;
 	info.elementSize = 1;
@@ -280,8 +245,8 @@ std::deque<int> sort(std::deque<int> args, int size) {
 	info.comparisons = info.totalValues / (info.elementSize * 2);
     info.jacobsthal = jacobsthalSequence();
     std::deque<int> sorted = mergeInsertSort(info);
-    if (COMMENTS) {
-        std::cout << "\nComparisons: " << comparisonCounter << std::endl;
+    if (COMPARISONS) {
+        std::cout << "\nComparisons for deque: " << comparisonCounter << std::endl;
     }
     comparisonCounter = 0;
 	return (sorted);
@@ -305,39 +270,7 @@ std::vector<element<std::vector>>::iterator getElement(int jacobsthal, std::vect
             return (it);
         }
     }
-    return (vector.end() - 1);
-}
-
-void binaryInsertOutsider(element<std::vector> toInsert, std::vector<element<std::vector>> & main) {
-
-    auto start = main.begin();
-    auto end = main.end();
-
-    while (start < end) {
-        auto mid = start + (end - start) / 2;
-        if (mid->value < toInsert.value) {
-            start = mid + 1;
-        } else {
-            end = mid;
-        }
-        comparisonCounter++;
-    }
-
-    if (COMMENTS) {
-        std::cout << "Inserting: " << std::flush;
-        std::cout << "value: " << toInsert.value << " {" << std::flush;
-        for (const auto& value : toInsert.element_vec) {
-            std::cout << value << " ";
-        }
-        if (start == main.end()) {
-            std::cout << "}" << " before end." << std::endl;
-        }
-        else {
-            std::cout << "}" << " before " << start->value << std::endl;
-        }
-    }
-
-    main.insert(start, toInsert);
+    return (vector.end());
 }
 
 void binaryInsert(element<std::vector> toInsert, std::vector<element<std::vector>> & main) {
@@ -404,7 +337,8 @@ void createMainAndPend(sortInfo<std::vector> & info) {
 	std::vector<int>::iterator rightEnd;
 
     auto it = info.initialSort.begin();
-    for (int i = 0; i < info.comparisons; i++) {
+    int i = 0;
+    for ( ; i < info.comparisons; i++) {
         if (it >= info.initialSort.end()) {
             break ;
         }
@@ -431,6 +365,12 @@ void createMainAndPend(sortInfo<std::vector> & info) {
         it += 2 * info.elementSize;
     }
 
+    if (!info.outsider.element_vec.empty()) {
+        info.outsider.index = i + 1;
+        info.pend.insert(info.pend.end(), info.outsider);
+        info.outsider.element_vec.clear();
+    }
+
     if (COMMENTS) {
         std::cout << "Elements in main: " << std::endl;
         for (element e : info.main) {
@@ -451,15 +391,6 @@ void createMainAndPend(sortInfo<std::vector> & info) {
             std::cout << "}" << std::endl;
         }
         std::cout << std::endl;
-
-        if (!info.outsider.element_vec.empty()) {
-            std::cout << "Outsider element: " <<std::endl;
-            std::cout << "value: " << info.outsider.value << " {" << std::flush;
-            for (const auto& value : info.outsider.element_vec) {
-                std::cout << value << " ";
-            }
-            std::cout << "}\n" << std::endl;
-        }
     }
 }
 
@@ -506,7 +437,6 @@ std::vector<int> mergeInsertSort(sortInfo<std::vector> info) {
 
 		info.initialSort = mergeInsertSort(newInfo);
         if (COMMENTS) {
-            std::cout << "\nComparisons used: " << comparisonCounter << std::endl;
             std::cout << "\nGetting back from recursion" << "----------------------------------" << std::endl;
             std::cout << "\nLEVEL: " << info.level << std::endl;
             std::cout << "Element size: " << info.elementSize << std::endl;
@@ -523,6 +453,9 @@ std::vector<int> mergeInsertSort(sortInfo<std::vector> info) {
                     break ;
                 }
                 auto elementIt = getElement(j, info.pend);
+                if (j > elementIt->index) {
+                    break ;
+                }
                 binaryInsert(*(elementIt), info.main);
                 info.pend.erase(elementIt);
             }
@@ -536,10 +469,6 @@ std::vector<int> mergeInsertSort(sortInfo<std::vector> info) {
         std::vector<element<std::vector>>::iterator toInsert = info.pend.end() - 1;
         binaryInsert(*toInsert, info.main);
         info.pend.erase(info.pend.end() -1);
-    }
-
-    if (!info.outsider.element_vec.empty()) {
-        binaryInsertOutsider(info.outsider, info.main);
     }
 
     std::vector<int> sorted;
@@ -561,7 +490,9 @@ std::vector<int> mergeInsertSort(sortInfo<std::vector> info) {
 }
 
 std::vector<int> sort(std::vector<int> args, int size) {
-    std::cout << "\n----VECTOR-------------------------------------------------------------------------" << std::endl;
+    if (COMMENTS) {
+        std::cout << "\n----VECTOR-------------------------------------------------------------------------" << std::endl;
+    }
 	sortInfo<std::vector> info;
 	info.level = 0;
 	info.elementSize = 1;
@@ -571,8 +502,8 @@ std::vector<int> sort(std::vector<int> args, int size) {
 	info.comparisons = info.totalValues / (info.elementSize * 2);
     info.jacobsthal = jacobsthalSequence();
     std::vector<int> sorted = mergeInsertSort(info);
-    if (COMMENTS) {
-        std::cout << "\nComparisons: " << comparisonCounter << std::endl;
+    if (COMPARISONS) {
+        std::cout << "\nComparisons for vector: " << comparisonCounter << std::endl;
     }
     comparisonCounter = 0;
 	return (sorted);
