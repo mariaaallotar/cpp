@@ -1,8 +1,6 @@
 
 #include "PmergeMe.hpp"
 
-int comparisonCounter = 0;
-
 /*************************************************************************************************/
 // DEQUE
 
@@ -195,8 +193,8 @@ std::deque<int> mergeInsertSort(sortInfo<std::deque> info) {
                     break ;
                 }
                 auto elementIt = getElement(j, info.pend);
-                if (j > elementIt->index) {
-                    break ;
+                if (elementIt == info.pend.end()) {
+                    elementIt--;
                 }
                 binaryInsert(*(elementIt), info.main);
                 info.pend.erase(elementIt);
@@ -245,10 +243,6 @@ std::deque<int> sort(std::deque<int> args, int size) {
 	info.comparisons = info.totalValues / (info.elementSize * 2);
     info.jacobsthal = jacobsthalSequence();
     std::deque<int> sorted = mergeInsertSort(info);
-    if (COMPARISONS) {
-        std::cout << "\nComparisons for deque: " << comparisonCounter << std::endl;
-    }
-    comparisonCounter = 0;
 	return (sorted);
 }
 
@@ -453,8 +447,8 @@ std::vector<int> mergeInsertSort(sortInfo<std::vector> info) {
                     break ;
                 }
                 auto elementIt = getElement(j, info.pend);
-                if (j > elementIt->index) {
-                    break ;
+                if (elementIt == info.pend.end()) {
+                    elementIt--;
                 }
                 binaryInsert(*(elementIt), info.main);
                 info.pend.erase(elementIt);
@@ -502,10 +496,6 @@ std::vector<int> sort(std::vector<int> args, int size) {
 	info.comparisons = info.totalValues / (info.elementSize * 2);
     info.jacobsthal = jacobsthalSequence();
     std::vector<int> sorted = mergeInsertSort(info);
-    if (COMPARISONS) {
-        std::cout << "\nComparisons for vector: " << comparisonCounter << std::endl;
-    }
-    comparisonCounter = 0;
 	return (sorted);
 }
 

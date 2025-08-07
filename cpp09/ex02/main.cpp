@@ -6,13 +6,15 @@
 /*   By: maheleni <maheleni@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/02 14:04:45 by maheleni          #+#    #+#             */
-/*   Updated: 2025/08/06 14:53:40 by maheleni         ###   ########.fr       */
+/*   Updated: 2025/08/07 11:05:31 by maheleni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PmergeMe.hpp"
 #include <chrono>
 #include <cmath>
+
+int comparisonCounter = 0;
 
 int maxComparisons(int n) {
     int sum = 0;
@@ -24,7 +26,7 @@ int maxComparisons(int n) {
 }
 
 int main(int argc, char *argv[]) {
-    if (argc <= 1) {
+    if (argc <= 2) {
         std::cout << "This program needs a positive integer sequence as argument" << std::endl;
         return (0);
     }
@@ -46,6 +48,8 @@ int main(int argc, char *argv[]) {
     std::vector<int> result = sort(argsVec, argc - 1);
     auto stopVec = std::chrono::high_resolution_clock::now();
     auto durationVec = std::chrono::duration_cast<std::chrono::microseconds>(stopVec - startVec);
+    int comparisonsVec = comparisonCounter;
+    comparisonCounter = 0;
     
     std::cout << "After : " << std::flush;
     for (int i : result) {
@@ -67,12 +71,15 @@ int main(int argc, char *argv[]) {
     sort(argsDeq, argc - 1);
     auto stopDeq = std::chrono::high_resolution_clock::now();
     auto durationDeq = std::chrono::duration_cast<std::chrono::microseconds>(stopDeq - startDeq);
+    int comparisonsDeq = comparisonCounter;
     
     std::cout << "Time to process a range of " << argc - 1 << " elements with std::vector: " << durationVec.count() << "us" << std::endl;
     std::cout << "Time to process a range of " << argc - 1 << " elements with std::deque: " << durationDeq.count() << "us" << std::endl;
 
     if (COMPARISONS) {
         std::cout << "\nMax comparisons allowed: " << maxComparisons(argc - 1) << std::endl;
+        std::cout << "Comparisons for vector: " << comparisonsVec << std::endl;
+        std::cout << "Comparisons for deque: " << comparisonsDeq << std::endl;
     }
 }
 
