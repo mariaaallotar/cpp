@@ -250,6 +250,9 @@ std::deque<int> createArgDeq(char *argv[]) {
     std::deque<int> argVec;
     for (int i = 0; argv[i] != NULL; i++) {
         int num = std::stoi(argv[i]);
+        if (num < 0) {
+            throw std::invalid_argument("All arguments must be positive");
+        }
         argVec.push_back(num);
     }
     return (argVec);
@@ -503,6 +506,9 @@ std::vector<int> createArgVec(char *argv[]) {
     std::vector<int> argVec;
     for (int i = 0; argv[i] != NULL; i++) {
         int num = std::stoi(argv[i]);
+        if (num < 0) {
+            throw std::invalid_argument("All arguments must be positive");
+        }
         argVec.push_back(num);
     }
     return (argVec);

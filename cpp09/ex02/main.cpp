@@ -6,13 +6,12 @@
 /*   By: maheleni <maheleni@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/02 14:04:45 by maheleni          #+#    #+#             */
-/*   Updated: 2025/08/07 11:05:31 by maheleni         ###   ########.fr       */
+/*   Updated: 2025/08/07 14:41:57 by maheleni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PmergeMe.hpp"
 #include <chrono>
-#include <cmath>
 
 int comparisonCounter = 0;
 
@@ -38,7 +37,7 @@ int main(int argc, char *argv[]) {
         std::cout << "error: " << e.what() << std::endl;
         return (1);
     }
-    std::cout << "Before : " << std::flush;
+    std::cout << "Before:\t" << std::flush;
     for (int i : argsVec) {
         std::cout << i << " " << std::flush;
     }
@@ -51,19 +50,18 @@ int main(int argc, char *argv[]) {
     int comparisonsVec = comparisonCounter;
     comparisonCounter = 0;
     
-    std::cout << "After : " << std::flush;
+    std::cout << "After:\t" << std::flush;
     for (int i : result) {
         std::cout << i << " " << std::flush;
     }
     std::cout << std::endl;
 
-    
     std::deque<int> argsDeq;
     try {
         argsDeq = createArgDeq(argv + 1);
     }
     catch (std::exception & e) {
-        std::cout << "error: " << e.what() << std::endl;
+        std::cout << "Error: " << e.what() << std::endl;
         return (1);
     }
     
