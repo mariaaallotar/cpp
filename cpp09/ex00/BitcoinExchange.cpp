@@ -6,7 +6,7 @@
 /*   By: maheleni <maheleni@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 14:56:20 by maheleni          #+#    #+#             */
-/*   Updated: 2025/05/28 10:19:19 by maheleni         ###   ########.fr       */
+/*   Updated: 2025/08/15 11:49:11 by maheleni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,11 @@ static int validateDate(std::string dateStr) {
 		throw (std::invalid_argument("Unexpected date format or date not valid"));
 	} 
 	return true;
+}
+
+static bool isValidLineFormat(const std::string& line) {
+    std::regex pattern(R"(^\d{4}-\d{2}-\d{2} \| -?\d+(\.\d+)?$)");
+    return (std::regex_match(line, pattern));
 }
 
 static int checkFirstLine(std::string line, bool & firstLineChecked, int dataFile) {
@@ -131,6 +136,10 @@ void calculateValue(std::map<std::string, float> dataMap, std::string inputFileN
         }
         std::string date;
         float value;
+        if (!isValidLineFormat(line)) {
+            std::cout << "Error: bad input => " << line << std::endl;
+            continue ;
+        }
         try {
             date = line.substr(0, line.find(' '));
             value = getValue(line);
