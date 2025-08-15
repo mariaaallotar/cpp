@@ -187,7 +187,7 @@ std::deque<int> mergeInsertSort(sortInfo<std::deque> info) {
     
     int elementsInPend = info.pend.size();
     for (int i = 3; i <= elementsInPend; i++) {     //i is the index in jacobsthal
-        for (int j = info.jacobsthal[i]; j >= 2 && j > info.jacobsthal[i - 1]; j--) {   //j is the actual jacobsthal to insert
+        for (int j = info.jacobsthal[i]; j >= 2 && j > info.jacobsthal[i - 1]; j--) {   //j is the name of the element to insert
             try {
                 if (info.pend.empty()) {
                     break ;
@@ -444,7 +444,7 @@ std::vector<int> mergeInsertSort(sortInfo<std::vector> info) {
     
     int elementsInPend = info.pend.size();
     for (int i = 3; i <= elementsInPend; i++) {     //i is the index in jacobsthal
-        for (int j = info.jacobsthal[i]; j >= 2 && j > info.jacobsthal[i - 1]; j--) {   //j is the actual jacobsthal to insert
+        for (int j = info.jacobsthal[i]; j >= 2 && j > info.jacobsthal[i - 1]; j--) {   //j is the name of the element to insert
             try {
                 if (info.pend.empty()) {
                     break ;
