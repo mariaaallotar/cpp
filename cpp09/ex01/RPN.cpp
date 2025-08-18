@@ -6,7 +6,7 @@
 /*   By: maheleni <maheleni@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 10:36:03 by maheleni          #+#    #+#             */
-/*   Updated: 2025/05/28 12:01:54 by maheleni         ###   ########.fr       */
+/*   Updated: 2025/08/18 15:26:01 by maheleni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,9 @@ void rpn(std::string expr) {
     }
     if (stack.size() > 1) {
         std::cout << "Note: unused numbers in stack, showing stack top" << std::endl;
+    }
+    if (stack.empty()) {
+        return ;
     }
     std::cout << stack.top() << std::endl;
 }
