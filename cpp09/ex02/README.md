@@ -52,7 +52,7 @@ The arrows respresent the relationship between the numbers, the arrow always poi
 "Name the elements a1, a2, ... , a[n/2], b1, b2, ... , b[n/2] as in (7), where a1 ≤ a2 ≤ · · · ≤ a[n/2] and bi ≤ ai for 1 ≤ i ≤ [n/2]"
 </blockquote>  
 
-"as in (7)" refers to the graph in the picture above.   
+"as in (7)" refers to the diagram in the picture above.   
 
 <img width="2122" height="918" alt="image" src="https://github.com/user-attachments/assets/6154440d-d6e7-4522-891a-909270cd23cc" />   
 
