@@ -6,7 +6,7 @@
 /*   By: maheleni <maheleni@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 14:56:20 by maheleni          #+#    #+#             */
-/*   Updated: 2025/08/15 11:49:11 by maheleni         ###   ########.fr       */
+/*   Updated: 2025/08/20 10:56:18 by maheleni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,9 @@ static int validateDate(std::string dateStr) {
     date_stream >> std::get_time(&date, "%Y-%m-%d");
     struct std::tm testDate{};
 	testDate = date;
-	std::mktime(&testDate);
+    if (std::mktime(&testDate) < 0) {
+        throw (std::runtime_error("mktime failed"));
+    }
 	if (testDate.tm_year != date.tm_year
 		|| testDate.tm_mon != date.tm_mon
 		|| testDate.tm_mday != date.tm_mday) {
