@@ -2,7 +2,7 @@
 Let us sort `8 11 13 15 9 2 1 4 5 3 12 6 10 14 7` using merge insertion as defined by Ford and Johnson
 in [this paper](https://seriouscomputerist.atariverse.com/media/pdf/book/Art%20of%20Computer%20Programming%20-%20Volume%203%20(Sorting%20&%20Searching).pdf). The algorithm is developed to makes the least amount of comparisons possible, which makes sense when it is more time-consuming to compare values (e.g. big strings or objects) than other computations, data movement and memory accessing.   
 
-I assume you have already read the pages 184 and 185 in the original paper and that you found it difficult to understand. If you have not, please read them before continuing with this explanation.   
+If you have not already read the pages 184 and 185 in the original paper, please read them before continuing with this explanation.   
 
 Let's start by following the steps found in the original paper:   
 
@@ -119,5 +119,4 @@ When the ´pend´ is empty, the ´main´ will contain all the numbers sorted.
 
 When you feel like you have a basic understanding of the algorithm try to make an implementation, either in actual code or pseudocode. Think of what containers you will use, how will you keep track of the pairs, how will you know the 'name' (a1, b1, etc.) of the number, when does the recursion end, etc.  
 
-Do ***not*** continue this guide before you have gotten stuck in some part of the implementation.  
-
+If you are stuck with the implementation please refer to other guides, there are a few that do a really good job on explaining that.  
