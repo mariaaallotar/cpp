@@ -6,7 +6,7 @@
 /*   By: maheleni <maheleni@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 10:36:03 by maheleni          #+#    #+#             */
-/*   Updated: 2025/08/18 15:26:01 by maheleni         ###   ########.fr       */
+/*   Updated: 2025/08/28 15:06:19 by maheleni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,12 @@ float countResult(float a, float b, char c) {
         case '*':
             return (a * b);
         case '/':
+            if (b == 0) {
+                throw std::runtime_error("Division by 0 not allowed");
+            }
             return (a  / b);
         default:
-            std::cerr << "Something went wrong, results undefined" << std::endl;
+            throw std::runtime_error("Something went wrong, exiting program");
     }
     return (-1);
 }
