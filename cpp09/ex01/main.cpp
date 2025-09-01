@@ -6,7 +6,7 @@
 /*   By: maheleni <maheleni@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 10:27:59 by maheleni          #+#    #+#             */
-/*   Updated: 2025/08/28 15:00:47 by maheleni         ###   ########.fr       */
+/*   Updated: 2025/09/01 12:09:34 by maheleni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,7 @@ int main(int argc, char *argv[]) {
     }
     catch (std::exception & e) {
         std::cout << "Error: " << e.what() << std::endl;
+        return (1);
     }
+    return (0);
 }

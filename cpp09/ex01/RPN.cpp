@@ -6,7 +6,7 @@
 /*   By: maheleni <maheleni@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 10:36:03 by maheleni          #+#    #+#             */
-/*   Updated: 2025/08/28 15:06:19 by maheleni         ###   ########.fr       */
+/*   Updated: 2025/09/01 14:22:01 by maheleni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,23 +46,20 @@ void rpn(std::string expr) {
     while (iss >> token) {
         if (token.length() != 1) {
             if (token[0] == '(' || token[0] == ')') {
-                std::cerr << "Brackets not supported" << std::endl;
-                return ;
+                throw std::runtime_error("Brackets not supported");
             }
-            std::cerr << "Invalid input: " << token << std::endl;
+            throw std::runtime_error("Invalid input: " + token);
             return ;
         }
         if (std::isdigit(token[0])) {
             int value = std::stoi(token);
             if (value < 0 || value > 9) {
-                std::cerr << "Value not supported" << std::endl;
-                return ;
+                throw std::runtime_error("Value not supported");
             }
             stack.push(value);
         } else if (supportedOperation(token[0])) {
             if (stack.size() < 2) {
-                std::cerr << "Operator can not be used on less than 2 values" << std::endl;
-                return ;
+                throw std::runtime_error("Operator can not be used on less than 2 values");
             }
             float b = stack.top();
             stack.pop();
@@ -70,7 +67,7 @@ void rpn(std::string expr) {
             stack.pop();
             stack.push(countResult(a, b, token[0]));
         } else {
-            std::cout << "Use of unsupported operator: " << token[0] << std::endl;
+            throw std::runtime_error("Use of unsupported operator: " + std::string(1, token[0]));
             return ;
         }
     }
